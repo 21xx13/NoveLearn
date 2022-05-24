@@ -1,0 +1,166 @@
+{% extends 'course/course_base.html' %}
+{% load static %}
+{% block title %} {{ coursetheme.name }} {% endblock title %}
+
+{% block theme %}
+<div class="left-ads-display col-lg-8">
+    <div class="content-section">
+
+        <ul id="theme-slides">
+            {% if coursetheme.name != "Итоговый тест" %}
+            {% for slide in coursetheme.courseslide_set.all %}
+            <li class="theme-slide showing" id="{{ slide.number }}">
+                {{ slide.html_layout | safe }}
+            </li>
+
+            {% endfor %}
+            {% endif %}
+            {% for task_slide in coursetheme.taskslide_set.all %}
+            <li class="theme-slide showing" id="{{ task_slide.number }}">
+                <h4>{{ task_slide.name }}</h4>
+                {% if not user.is_active %}
+                <br>
+                <h5>Для решения задач <a href="{% url 'login' %}">войдите на сайт</a> или
+                    <a href="{% url 'registration' %}">зарегистрируйтесь</a></h5>
+                <br>
+                {% endif %}
+                {% if user.is_active %}
+                <br>
+                {% if coursetheme.name == "Итоговый тест" %} <p>Далее вас ждет итоговый тест. Он представляет из себя выборку тестовых вопросов из 10 тем.</p> {% endif %}
+                {% if coursetheme.name != "Итоговый тест" %}<p>Пришло время для проверки знаний! Ответьте на все тестовые вопросы.</p>{% endif %}
+                {% for block in task_slide.taskblock_set.all %}
+                {% if not block.is_code_block %}
+                <div class="task-block" id="task-block-{{block.number}}">
+                    <form action="{% url 'check_answers' block.id %}" class="form-test quiz-form" method="post">
+                        {% csrf_token %}
+                        {% for quest in block.taskquestion_set.all %}
+                        {{ quest.html_render | safe }}
+                        {% if quest.help_text != '' %}
+                        <a data-toggle="collapse" href="#answer-{{quest.code}}">
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i> Открыть подсказку
+                        </a>
+                        <div class="collapse" id="answer-{{quest.code}}">
+                            <small>{{ quest.help_text }}</small>
+                        </div>
+                        {% endif %}
+                        <div class="quest_result" id="res-{{quest.code}}"></div>
+                        {% endfor %}
+                        <br>
+                        <div class="btn-quiz-group">
+                            <div class="w3layouts-newsletter">
+                                <button type="submit" class="btn btn1 btn-test">Проверить</button>
+                            </div>
+                            <div class="w3layouts-newsletter retry-button" id="button-{{block.id}}">
+                                <a href="{% url 'clear_answers' block.id %}" class="btn btn1 btn-test">Ещё раз</a>
+                            </div>
+                        </div>
+                    </form>
+                    {% if request.session.user_answers != None %}
+                    <div class="user-answers">
+                        <ul id="returned-questions">
+                            {% for q, ans in request.session.user_answers.items %}
+                            <li class="returned-question">
+                                <ul id="returned-{{ q }}">
+                                    {% for a in ans %}
+                                    <li class="returned-answer">{{ a }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                <br>
+                {% endif %}
+                {% if block.is_code_block %}
+                <div class="task-block" id="task-block-{{task_block.number}}">
+                    {% for quest in block.taskquestion_set.all %}
+                    <h5 class="question-text">{{quest.task_header}} ({{quest.weight}} баллов)</h5>
+                    <p class="p-in-form">{{quest.task_text | safe }}</p>
+                    <form class="form-test" action="{% url 'check_answers' block.id %}" method="post">
+                        {% csrf_token %}
+                        <textarea id="quest-{{ quest.code }}" class="code quest-common" name="quest-{{ quest.code }}"># Напишите здесь свой скрипт
+define...</textarea>
+                        <br>
+                        <div id="auto-tests"></div>
+                        <div class="quest_result" id="res-{{quest.code}}"></div>
+                        <br>
+
+                        <div class="btn-quiz-group">
+                            <div class="w3layouts-newsletter">
+                                <button type="submit" class="btn btn1 btn-test">Проверить</button>
+                            </div>
+                            <div class="w3layouts-newsletter retry-button" id="button-{{block.id}}">
+                                <a href="{% url 'clear_answers' block.id %}" class="btn btn1 btn-test">Ещё раз</a>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    {% if quest.help_text != '' %}
+                    <a data-toggle="collapse" href="#answer-{{quest.code}}">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i> Открыть подсказку
+                    </a>
+                    <div class="collapse" id="answer-{{quest.code}}">
+                        <small>{{ quest.help_text }}</small>
+                    </div>
+                    <div class="quest_result" id="res-{{quest.code}}"></div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+            </li>
+            {% if coursetheme.name == "Итоговый тест" %}
+                {% for slide in coursetheme.courseslide_set.all %}
+                <li class="theme-slide showing" id="{{ slide.number }}">
+                    {{ slide.html_layout | safe }}
+                </li>
+                {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <div class="w3layouts-newsletter" align="center">
+            <a class="btn1 btn next-slide" style="font-size: 16px">Далее</a>
+        </div>
+    </div>
+</div>
+<script>
+    let allCheckboxGroups = document.querySelectorAll('.checkbox-group-test');
+    let allTests = document.querySelectorAll('.quiz-form .btn-test');
+    allTests.forEach(form => form.addEventListener('click', (evt) => {
+        for (let i = 0; i < allCheckboxGroups.length; i++) {
+            let idg = allCheckboxGroups[i].id;
+            if ($(` #${idg} :checkbox:checked`).length === 0) {
+                let task = document.querySelector(`#${idg} .task-alert`);
+                task.style.display = "block";
+                evt.preventDefault();
+                document.documentElement.scrollTop = task.offsetTop;
+                break;
+            }
+        }
+    }))
+    // let isReadOnlyCode = false;
+    // let questions = document.querySelectorAll('#returned-questions .returned-question ul');
+    // if (questions.length > 0){
+    //     let qCode = questions[0].id.replace("returned-", "");
+    //     let inputAnswer = document.getElementById(`quest-${qCode}`);
+    //     if (inputAnswer?.tagName === "TEXTAREA")
+    //         isReadOnlyCode = true;
+    // }
+
+    let editor = CodeMirror.fromTextArea(document.getElementsByClassName("code")[0], {
+        mode: {
+            name: "python",
+            version: 3,
+            singleLineStringErrors: false
+        },
+        lineNumbers: true,
+        indentUnit: 4,
+        matchBrackets: true
+    });
+
+</script>
+
+{% endblock theme  %}

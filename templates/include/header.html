@@ -1,0 +1,68 @@
+{% load novel_tag %}
+<!-- header -->
+<header class="header">
+    <div class="container-fluid px-lg-5">
+        <!-- nav -->
+        <nav class="py-4">
+            <div id="logo">
+                <h1><a href="/" class="editContent"
+                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: &quot;Source Sans Pro&quot;, sans-serif;">NoveLearn</a>
+                </h1>
+            </div>
+
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu">
+                {% if user.is_active %}
+                <li>
+                    <div class="avatar-wrap">
+                       <a class="avatar">{{ user.username.0 }}</a>
+                    </div>
+                    <input type="checkbox" id="drop-4">
+                    <ul id="profile-list">
+                        <li class="hello"><a class="user-hello">Привет, {{ user.username }}</a></li>
+                        <li class="hello"><a href="{% url 'logout' %}" style="font-weight: 700; text-transform: uppercase;">Выход</a></li>
+                    </ul>
+                </li>
+
+                {% endif %}
+            </ul>
+            <ul class="menu mt-2 mr-3">
+                <li><a href="/">Главная</a></li>
+                <li>
+                    <!-- First Tier Drop Down -->
+                    <label for="drop-2" class="toggle">Каталог <span class="fa fa-angle-down" aria-hidden="true"></span>
+                    </label>
+                    <a href="/catalog">Каталог <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                    <input type="checkbox" id="drop-2">
+                    <ul>
+                        {% get_categories as categories %}
+                        {% for category in categories %}
+                        <li><a href="/catalog">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <label for="drop-3" class="toggle">Статьи <span class="fa fa-angle-down" aria-hidden="true"></span>
+                    </label>
+                    <a href="/catalog">Статьи <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                    <input type="checkbox" id="drop-3">
+                    <ul>
+                        <li><a href="/course">Курс по RenPy</a></li>
+                        <li><a href="/catalog">Игровые механики</a></li>
+                        <li><a href="/catalog">Типы новелл</a></li>
+                        <li><a href="/catalog">Материалы для разработки</a></li>
+                    </ul>
+                </li>
+                {% if not user.is_active %}
+                <li><a href="{% url 'login' %}" style="font-weight: 700; text-transform: uppercase;">Вход</a></li>
+                {% endif %}
+
+            </ul>
+
+        </nav>
+        <div style="display: none" id="user-id">{{user.id}}</div>
+    </div>
+</header>
+
+

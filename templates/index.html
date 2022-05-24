@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block header %} bg1 {% endblock header %}
+{% block banner_info %}
+<div class="banner-info">
+    <p class="editContent">СБОРНИК ПОЛЕЗНЫХ МАТЕРИАЛОВ ДЛЯ РАЗРАБОТКИ СВОЕЙ НОВЕЛЛЫ</p>
+    <h3 class="mb-4 editContent">ВСЁ О НОВЕЛЛАХ</h3>
+    <div class="ban-buttons">
+    </div>
+</div>
+{% endblock banner_info %}
+{% block content %}
+<div class="container-fluid padding main-page-block">
+    <div class="row padding">
+        <div class="offset-lg-2 col-lg-4">
+            <h2>Курс по созданию новеллы</h2>
+            <br>
+            <p>Наша команда разработала учебный курс по созданию своих новелл на RenPy! Курс рассчитан на новичков и
+                подойдет даже тем, кто ни разу не программировал. Прохождение курса совершенно бесплатно. Присоединяйся
+                :)</p>
+            <br>
+            <div class="w3layouts-newsletter" align="center">
+                <a href="/course" class="btn1 btn">Вперёд!</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <br>
+            <img src="https://mmo13.ru/download/content/201811/20/02/image_5bf340f25977f9.01407880.jpg"
+                 class="img-fluid">
+        </div>
+    </div>
+</div>
+<figure>
+    <div class="fixed-wrap">
+        <div id="fixed-main-page"></div>
+    </div>
+</figure>
+<div class="conteiner-fluid padding main-page-block">
+    <div class="row text-center">
+        <div class="col-12">
+            <h2>Новые статьи</h2>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="container padding">
+    <div class="row padding articles-row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../static/card-1.png" class="card-img-top" alt="">
+                <div class="card-body my-card">
+                    <h4 class="card-title">Игровые механики</h4>
+                    <p class="card-text">Узнайте о том, какие бывают игровые механики. Подборка самых популярных и
+                        наиболее подходящих для новелл.
+                    </p>
+                    <div class="w3layouts-newsletter" align="center">
+                        <a href="#" class="btn1 btn">Читать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card my-card">
+                <img src="../static/card-2.png" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Типы новелл</h4>
+                    <p class="card-text">Новеллы в целом похожи друг на друга, но даже в таком простом жанре есть своя
+                        классификация.
+                    </p>
+                    <div class="w3layouts-newsletter" align="center">
+                        <a href="#" class="btn1 btn">Читать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card my-card">
+                <img src="../static/card-3.png" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Жанры новелл</h4>
+                    <p class="card-text">Как заинтересовать игрока? Поговорим об особенностях сценариев в тех или иных
+                        жанрах новелл.
+                    </p>
+                    <div class="w3layouts-newsletter" align="center">
+                        <a href="#" class="btn1 btn">Читать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container main-page-block" align="center">
+    <div class="row text-center">
+        <div class="col-12">
+            <h2>Интересные новеллы</h2>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="container slider-block" align="center">
+    <div class="carousel slide" data-ride="carousel" id="slides" style="width: 90%;">
+        <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0" class="active"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+            <li data-target="#slides" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../static/1.jpg" alt="slide">
+                <div class="carousel-caption">
+                    <a href="#"><h1>Cateau</h1></a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../static/2.jpg" alt="slide">
+                <div class="carousel-caption">
+                    <a href="#"><h1>Doki Doki Literature Club!</h1></a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../static/3.jpg" alt="slide">
+                <div class="carousel-caption">
+                    <a href="#"><h1>Zarya-1</h1></a>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#slides" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endblock content %}

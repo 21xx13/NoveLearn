@@ -1,0 +1,21 @@
+{% extends 'novels/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block header %} {% endblock header %}
+
+{% block novel %}
+<div class="left-ads-display col-lg-9">
+    <div class="container course_wrap">
+        <h1>Онлайн курс по созданию новеллы на RenPy</h1>
+        <br>
+        <p>Наша команда разработала учебный курс по созданию своих визуальных новелл на RenPy! Курс рассчитан на новичков и подойдет даже тем, кто ни разу не программировал. Прохождение курса совершенно бесплатно. Присоединяйся :)</p>
+        <br>
+        <hr>
+
+        {% include 'include/side_course.html' %}
+        <br>
+        <div class="w3layouts-newsletter">
+            <a  href="/course/1" class="btn1 btn" style="font-size: 16px">Учиться!</a>
+        </div>
+    </div>
+</div>
+{% endblock novel  %}

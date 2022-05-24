@@ -1,0 +1,79 @@
+{% load course_tag %}
+{% if user.is_active %}
+        <h4>Прогресс по курсу:</h4>
+        <p style="margin: 15px 0">Прочитано лекций: <span id="slide-read">0</span>/<span id="slide-all">20</span>
+            <br> Баллы за задачи: <span id="task-done">0</span>/<span id="task-all">20</span></p>
+        <div class="progress-wrap"><div class="progress-inner" id="progress"></div>
+        <span id="progress-perc"></span></div>
+
+        <br>
+        <hr>
+        {% endif %}
+<h4>Содержание курса:</h4>
+<br>
+<ol class="rectangle">
+    {% get_themes as themes %}
+    {% for theme in themes %}
+    <li><a data-toggle="collapse" href="#theme-{{theme.number}}" class="text-size-larger item-num">{{theme.name}}</a>
+        <div class="collapse sub-item" id="theme-{{theme.number}}">
+            {% if theme.name != "Итоговый тест" %}
+                {% for slide in theme.courseslide_set.all %}
+                <div class="slide-row">
+                    <div class="slide-check" id="{{slide.id}}"></div>
+                    <div class="slide-name">
+                        {% if not slide.is_practice %}<span class="icon-list icon-lect">
+                        <i class="fa fa-file-o" aria-hidden="true"></i></span>{% endif %}
+                        {% if slide.is_practice %}<span class="icon-list">
+                        <i class="fa fa-desktop" aria-hidden="true"></i></span>{% endif %}
+                        <a href="/course/{{theme.number}}/{% if not forloop.first %}#{{slide.number}}{% endif %}"
+                           class="name-theme"> {{ slide.name }} </a>
+                        <br>
+                    </div>
+
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            {% for task_slide in theme.taskslide_set.all %}
+            <div class="slide-row">
+                <div class="slide-check-test" id="{{task_slide.id}}"></div>
+                <div class="slide-name">
+                    <div class="slide-name">
+                        <span class="icon-list"><i class="fa fa-desktop" aria-hidden="true"></i></span>
+                        <a href="/course/{{theme.number}}/#{{task_slide.number}}" class="name-theme">
+                            {{ task_slide.name }} </a>
+                        <br>
+                    </div>
+                </div>
+
+
+            </div>
+            {% endfor %}
+
+            {% if theme.name == "Итоговый тест" %}
+                {% for slide in theme.courseslide_set.all %}
+                <div class="slide-row">
+                    <div class="slide-check" id="{{slide.id}}"></div>
+                    <div class="slide-name">
+                        {% if not slide.is_practice %}<span class="icon-list icon-lect">
+                        <i class="fa fa-file-o" aria-hidden="true"></i></span>{% endif %}
+                        {% if slide.is_practice %}<span class="icon-list">
+                        <i class="fa fa-desktop" aria-hidden="true"></i></span>{% endif %}
+                        <a href="/course/{{theme.number}}/{% if not forloop.first %}#{{slide.number}}{% endif %}"
+                           class="name-theme"> {{ slide.name }} </a>
+                        <br>
+                    </div>
+
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+
+</ol>
+<script>checkSlides({
+{
+    user.id
+}
+})</script>

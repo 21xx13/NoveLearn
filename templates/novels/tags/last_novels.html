@@ -1,0 +1,16 @@
+ <div class="deal-leftmk left-side my-4">
+     <h3 class="sear-head editContent">Популярные новеллы</h3>
+     {% for novel in last_novels %}
+     <div class="special-sec1 row mt-3 editContent">
+         <div class="img-deals col-md-4">
+             <a href="{{ novel.get_absolute_url }}" class="editContent" >
+                 <img src="{{ novel.poster.url }}" class="img-fluid" alt="">
+             </a>
+         </div>
+         <div class="img-deal1 col-md-4">
+             <a href="{{ novel.get_absolute_url }}" class="editContent" ><h3 class="editContent">{{ novel.title }}</h3>
+             </a>
+         </div>
+     </div>
+{% endfor %}
+ </div>

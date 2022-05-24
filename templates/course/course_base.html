@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<ol class="breadcrumb editContent">
+    <li class="breadcrumb-item">
+        <a href="/" class="editContent">Главная</a>
+    </li>
+    <li class="breadcrumb-item active editContent">Гайд по разработке</li>
+</ol>
+<section class="ab-info-main py-md-5 py-4 editContent" style="padding-left: 3rem; padding-right: 3rem;">
+    {% block container %}
+    <div class="container-fluid py-md-3">
+        {% endblock container %}
+        <div class="row">
+            {% block sidebar %}
+            <div class="side-bar col-lg-3 course-content-list">
+                <div class="sidebar-section">
+                    <div class="sidebar-item sticky-top">
+                        {% endblock sidebar %}
+                        <div class="sidebar-content">
+                            {% include 'include/side_course.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block theme %}
+            {% endblock theme %}
+
+            <div class="col-lg-1 col-btn">
+                <div class="btn next-btn next-slide">
+                    <div class="btn-wrap">
+                        <i class="fa fa-chevron-right " aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
