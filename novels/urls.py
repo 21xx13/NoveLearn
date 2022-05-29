@@ -15,6 +15,7 @@ urlpatterns = [
     path('course/<slug:slug>/', views.ThemeDetailView.as_view(), name="theme_detail"),
     path('catalog/<slug:slug>/', views.NovelDetailView.as_view(), name="novel_detail"),
     path("review/<int:pk>/", views.AddReview.as_view(), name="add_review"),
+    path("add-review/", views.add_review),
     path("check/<int:pk>/", views.AnswerChecker.as_view(), name="check_answers"),
     path("clear-answers/<int:pk>/", views.clear_answers, name="clear_answers"),
     path('users/', views.UserList.as_view()),

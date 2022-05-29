@@ -15,7 +15,7 @@ from . import models
 import re
 
 from . import serializers
-from .models import UserSlides, UserScore, UserTestSlides
+from .models import UserSlides, UserScore, UserTestSlides, Reviews
 
 
 class ReviewsList(generics.ListAPIView):
@@ -101,6 +101,16 @@ class TestSlideDetail(generics.RetrieveAPIView):
 class TaskSlideList(generics.ListAPIView):
     queryset = models.TaskSlide.objects.all()
     serializer_class = serializers.TaskSlideSerializer
+
+
+@api_view(['POST'])
+def add_review(request):
+    body = json.loads(request.body.decode('utf-8'))
+    print(body)
+    novel = models.Novel.objects.get(id=body["novel"])
+    review = models.Reviews(email="mail@mail.com", novel=novel, name=body["name"], text=body["text"])
+    review.save()
+    return Response({'success': 'ok'})
 
 
 @api_view(['POST'])
