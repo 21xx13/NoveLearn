@@ -1,11 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<ol class="breadcrumb editContent">
-        <li class="breadcrumb-item">
-            <a href="/" class="editContent">Главная</a>
-        </li>
-        <li class="breadcrumb-item active editContent">Каталог</li>
-    </ol>
 <section class="ab-info-main py-md-5 py-4 editContent" style="padding-left: 3rem; padding-right: 3rem;">
     {% block container %}
         <div class="container-fluid py-md-3">
@@ -16,8 +10,8 @@
         {% endblock sidebar %}
             {% include 'include/sidebar.html' %}
         </div>
-            {% block novel %}
-            {% endblock novel %}
+            {% block main_block %}
+            {% endblock main_block %}
     </div>
     </div>
 </section>

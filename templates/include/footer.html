@@ -4,7 +4,7 @@
                 <div class="row footer-top">
                     <div class="col-lg-4 footer-grid_section_w3layouts">
                         <h2 class="logo-2 mb-lg-4 mb-3">
-                            <a href="index.html" class="editContent">
+                            <a href="/" class="editContent">
                                 <span class="fa" aria-hidden="true" >
                                     NovelWiki
                                 </span>
@@ -16,23 +16,23 @@
                         <h4 class="sub-con-fo ad-info my-4 editContent" >Мы в социальных сетях</h4>
                         <ul class="w3layouts_social_list media-soc list-unstyled">
                             <li>
-                                <a href="#" class="w3pvt_facebook editContent" >
-                                    <span class="fa fa-facebook-f" ></span>
+                                <a href="https://vk.com/id137795470" class="w3pvt_social editContent" target="_blank" >
+                                    <span class="fa fa-vk" ></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="w3pvt_twitter editContent" >
-                                    <span class="fa fa-twitter" ></span>
+                                <a href="https://t.me/opium21st" class="w3pvt_social editContent" target="_blank">
+                                    <span class="fa fa-telegram" ></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="w3pvt_dribble editContent" >
-                                    <span class="fa fa-dribbble" ></span>
+                                <a class="w3pvt_social editContent" href="https://www.youtube.com/channel/UClxFgRsqn0U54csf02DW3sQ" target="_blank">
+                                    <span class="fa fa-youtube-play" ></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="w3pvt_google editContent" >
-                                    <span class="fa fa-google-plus" ></span>
+                                <a href="mailto: FiveRacoons@gmail.com" class="w3pvt_social editContent" target="_blank">
+                                    <span class="fa fa-envelope" ></span>
                                 </a>
                             </li>
                         </ul>
@@ -43,9 +43,9 @@
 
                             <p class="editContent" >Подписываясь на нашу рассылку, вы всегда будете получать самые свежие новости и обновления.</p>
                             <form action="#" method="post" class="w3layouts-newsletter">
+                                {% csrf_token %}
                                 <input type="email" name="Email" class="editContent" placeholder="Введите ваш email..." required="" >
                                 <button class="btn1 btn" ><span class="fa fa-paper-plane-o" aria-hidden="true" ></span></button>
-
                             </form>
                         </div>
                         <div class="row mt-lg-4 bottom-w3layouts-sec-nav mx-0">
@@ -53,13 +53,13 @@
                                 <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3" >Разделы</h3>
                                 <ul class="list-unstyled w3layouts-icons">
                                     <li>
-                                        <a href="index.html" class="editContent" >Главная</a>
+                                        <a href="/" class="editContent" >Главная</a>
                                     </li>
                                     <li>
-                                        <a href="about.html" class="editContent" >Категории</a>
+                                        <a href="/catalog" class="editContent" >Каталог</a>
                                     </li>
                                     <li>
-                                        <a href="contact.html" class="editContent" >Контакты</a>
+                                        <a href="{% url 'not_exist' %}" class="editContent" >Контакты</a>
                                     </li>
                                 </ul>
                             </div>
@@ -70,19 +70,19 @@
                                     <ul class="list-unstyled w3layouts-icons">
 
                                         <li>
-                                            <a href="#" class="editContent" >Гайд по разработке</a>
+                                            <a href="/course" class="editContent" >Гайд по разработке</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="editContent" >Игровые механики</a>
+                                            <a href="{% url 'not_exist' %}" class="editContent" >Игровые механики</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="editContent" >Жанры новелл</a>
+                                            <a href="{% url 'not_exist' %}" class="editContent" >Жанры новелл</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="editContent" >Материалы для разработки</a>
+                                            <a href="{% url 'not_exist' %}" class="editContent" >Материалы для разработки</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="editContent" >Типы новелл</a>
+                                            <a href="{% url 'not_exist' %}" class="editContent" >Типы новелл</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -101,10 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
             </div>

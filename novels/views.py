@@ -103,38 +103,39 @@ class TaskSlideList(generics.ListAPIView):
     serializer_class = serializers.TaskSlideSerializer
 
 
-@api_view(['POST'])
-def add_review(request):
-    body = json.loads(request.body.decode('utf-8'))
-    print(body)
-    novel = models.Novel.objects.get(id=body["novel"])
-    review = models.Reviews(email="mail@mail.com", novel=novel, name=body["name"], text=body["text"])
-    review.save()
-    return Response({'success': 'ok'})
-
-
-@api_view(['POST'])
-def sign_in(request):
-    body = json.loads(request.body.decode('utf-8'))
-    print(body)
-    user = authenticate(request, username=body["login"], password=body["password"])
-    if user is not None:
-        login(request, user)
-        return Response({'success': 'ok', 'user': body['login']})
-    return Response({'success': 'error', 'errorText': f'Пользователь {body["login"]} не найден!'})
-
-
-@api_view(['POST'])
-def register(request):
-    body = json.loads(request.body.decode('utf-8'))
-    print(body)
-    if len(User.objects.filter(username=body["login"])) > 0:
-        return Response({'success': 'error', 'errorText': f'Пользователь {body["login"]} уже существует!'})
-    user = User.objects.create_user(username=body["login"], password=body["password"])
-    user.save()
-    user = authenticate(request, username=body["login"], password=body["password"])
-    login(request, user)
-    return Response({'success': 'ok', 'user': body['login']})
+# @api_view(['POST'])
+# def add_review(request):
+#     print("I'm printing")
+#     body = json.loads(request.body.decode('utf-8'))
+#     print(body)
+#     novel = models.Novel.objects.get(id=body["novel"])
+#     review = models.Reviews(email="mail@mail.com", novel=novel, name="userrrrrr", text=body["text"])
+#     review.save()
+#     return Response({'success': 'ok'})
+#
+#
+# @api_view(['POST'])
+# def sign_in(request):
+#     body = json.loads(request.body.decode('utf-8'))
+#     print(body)
+#     user = authenticate(request, username=body["login"], password=body["password"])
+#     if user is not None:
+#         login(request, user)
+#         return Response({'success': 'ok', 'user': body['login']})
+#     return Response({'success': 'error', 'errorText': f'Пользователь {body["login"]} не найден!'})
+#
+#
+# @api_view(['POST'])
+# def register(request):
+#     body = json.loads(request.body.decode('utf-8'))
+#     print(body)
+#     if len(User.objects.filter(username=body["login"])) > 0:
+#         return Response({'success': 'error', 'errorText': f'Пользователь {body["login"]} уже существует!'})
+#     user = User.objects.create_user(username=body["login"], password=body["password"])
+#     user.save()
+#     user = authenticate(request, username=body["login"], password=body["password"])
+#     login(request, user)
+#     return Response({'success': 'ok', 'user': body['login']})
 
 
 
@@ -181,6 +182,10 @@ def index_view(request):
     return render(request, 'index.html')
 
 
+def error_view(request):
+    return render(request, 'error_template.html')
+
+
 def course_main_view(request):
     return render(request, 'course/course.html')
 
@@ -217,6 +222,8 @@ class AddReview(View):
             form = form.save(commit=False)
             if request.POST.get("parent", None):
                 form.parent_id = int(request.POST.get("parent"))
+            form.name = request.user.username
+            form.email = "test@mail.ru"
             form.novel = novel
             form.save()
         return redirect(novel.get_absolute_url())

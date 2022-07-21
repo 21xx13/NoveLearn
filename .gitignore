@@ -85,6 +85,3 @@ target/
 .env
 db.sqlite3
 
-
-local_settings.py
-prod_settings.py

@@ -63,7 +63,7 @@ $ renpy.movie_cutscene('videos/cutscene.ogv') #4
                     <img class="image-lecture image-lecture-sm" src="/static/images/lect_10_1.png">
                 </div>
 
-                <div class="code-wrap"><pre>define config.main_menu_music = "<название файла с расширением>"</pre></div>
+                <div class="code-wrap"><pre><code class="language-python">define config.main_menu_music = "<название файла с расширением>"</code></pre></div>
                 <p>Если всё сделано верно, то при запуске новеллы, будет играть музыка.</p>
                 <h5>Музыка в игре</h5>
                 <p>По умолчанию в папке game уже есть папка audio, но для удобства лучше завести 2 папки (одну для
@@ -107,12 +107,12 @@ $ renpy.movie_cutscene('videos/cutscene.ogv') #4
                 <p>Данная строка означает, что музыка будет затухать в течение 1 секунды. После затухания останется
                     тишина. В нужном месте уже изученной командой play music можно запустить другую мелодию. </p>
 
-                <div class="code-wrap"><pre>label start:
+                <div class="code-wrap"><pre><code class="language-python">label start:
     play music musfunny
     <ваш код игры>
     stop music fadeout 1
     "И тут случилось страшное…"
-    play music musscary</pre></div>
+        play music musscary</code></pre></div>
                 <p>С музыкой разобрались, остались звуки. Звуки могут проигрываться параллельно с музыкой.
                     Для этого воспользуемся командой play sound:</p>
 
@@ -141,7 +141,7 @@ $ renpy.movie_cutscene('videos/cutscene.ogv') #4
                     Код для самопроверки
                 </a>
                 <div class="collapse" id="open-code-2">
-                    <div class="code-wrap"><pre>define money = 7000
+                    <div class="code-wrap"><pre><code class="language-python">define money = 7000
 label start:
     $ spent_money = renpy.input("Сколько потратить денег?", length=4, allow="0123456789").strip() or "0"
     $ spent_money = int(spent_money)
@@ -152,7 +152,7 @@ label start:
     elif spent_money == money:
         "Вы потратили все деньги."
     else:
-        "Вы потратили [spent_money]."</pre>
+        "Вы потратили [spent_money]."</code></pre>
                     </div>
                 </div>
 

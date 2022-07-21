@@ -1,7 +1,8 @@
 {% load novel_tag %}
 <div class="search-bar w3layouts-newsletter">
     <h3 class="sear-head editContent">Поиск материалов</h3>
-    <form action="#" method="post" class="d-flex editContent">
+    <form action="{% url 'not_exist' %}" method="post" class="d-flex editContent">
+        {% csrf_token %}
         <input type="search" placeholder="Введите название..." name="search" class="form-control" required="">
         <button class="btn1 btn"><span class="fa fa-search" aria-hidden="true"></span></button>
     </form>
@@ -11,16 +12,16 @@
     <h3 class="sear-head editContent">Статьи</h3>
     <ul class="w3layouts-box-list">
         <li class="editContent">
-            <a href="" class=" editContent">Гайд по разработке</a>
+            <a href="/course" class=" editContent">Гайд по разработке</a>
         </li>
         <li class="editContent">
-            <a href="" class=" editContent">Игровые механики</a>
+            <a href="{% url 'not_exist' %}" class=" editContent">Игровые механики</a>
         </li>
         <li class="editContent">
-            <a href="" class=" editContent">Типы новелл</a>
+            <a href="{% url 'not_exist' %}" class=" editContent">Типы новелл</a>
         </li>
         <li class="editContent">
-            <a href="" class=" editContent">Материалы для разработки</a>
+            <a href="{% url 'not_exist' %}" class=" editContent">Материалы для разработки</a>
         </li>
     </ul>
 </div>

@@ -29,19 +29,18 @@
             </ul>
             <ul class="menu mt-2 mr-3">
                 <li><a href="/">Главная</a></li>
-                <li>
-                    <!-- First Tier Drop Down -->
-                    <label for="drop-2" class="toggle">Каталог <span class="fa fa-angle-down" aria-hidden="true"></span>
-                    </label>
-                    <a href="/catalog">Каталог <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-                    <input type="checkbox" id="drop-2">
-                    <ul>
-                        {% get_categories as categories %}
-                        {% for category in categories %}
-                        <li><a href="/catalog">{{ category.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
+<!--                <li>-->
+<!--                    <label for="drop-2" class="toggle">Каталог <span class="fa fa-angle-down" aria-hidden="true"></span>-->
+<!--                    </label>-->
+<!--                    <a href="/catalog">Каталог <span class="fa fa-angle-down" aria-hidden="true"></span></a>-->
+<!--                    <input type="checkbox" id="drop-2">-->
+<!--                    <ul>-->
+<!--                        {% get_categories as categories %}-->
+<!--                        {% for category in categories %}-->
+<!--                        <li><a href="/catalog">{{ category.name }}</a></li>-->
+<!--                        {% endfor %}-->
+<!--                    </ul></li>-->
+                <li><a href="/catalog">Каталог</a></li>
                 <li>
                     <label for="drop-3" class="toggle">Статьи <span class="fa fa-angle-down" aria-hidden="true"></span>
                     </label>
@@ -49,17 +48,15 @@
                     <input type="checkbox" id="drop-3">
                     <ul>
                         <li><a href="/course">Курс по RenPy</a></li>
-                        <li><a href="/catalog">Игровые механики</a></li>
-                        <li><a href="/catalog">Типы новелл</a></li>
-                        <li><a href="/catalog">Материалы для разработки</a></li>
+                        <li><a href="{% url 'not_exist' %}">Игровые механики</a></li>
+                        <li><a href="{% url 'not_exist' %}">Типы новелл</a></li>
+                        <li><a href="{% url 'not_exist' %}">Материалы для разработки</a></li>
                     </ul>
                 </li>
                 {% if not user.is_active %}
                 <li><a href="{% url 'login' %}" style="font-weight: 700; text-transform: uppercase;">Вход</a></li>
                 {% endif %}
-
             </ul>
-
         </nav>
         <div style="display: none" id="user-id">{{user.id}}</div>
     </div>
