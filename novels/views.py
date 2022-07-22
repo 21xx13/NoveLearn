@@ -183,7 +183,8 @@ def index_view(request):
 
 
 def error_view(request):
-    return render(request, 'error_template.html')
+    referer = request.META.get('HTTP_REFERER')
+    return render(request, 'error_template.html', {'redirect_url': referer})
 
 
 def course_main_view(request):
