@@ -1,30 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="login-wrap" align="center">
+<div class="wrap-main-block" align="center">
     <h3>Регистрация</h3>
     <br>
     <form method="post" action="{% url 'registration' %}">
         {%csrf_token%}
-        <div class="form-group">
-            <label for="login">Логин</label>
-            <input type="text" class="form-control" id="login" name="login" placeholder="Введите login" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Пароль</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль"
-                   required>
+        <div class="login-wrap" align="center">
+            <div class="form-group">
+                <label for="login">Логин</label>
+                <input type="text" class="form-control" id="login" name="login" placeholder="Введите login" required>
+            </div>
+            <div class="form-group">
+                <label for="login">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Введите e-mail" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="password">Подтверждение пароля</label>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Введите пароль"
+                       required>
+            </div>
         </div>
         <br>
         <div class="w3layouts-newsletter" align="center">
-            <button type="submit" class="btn1 btn next-slide" style="font-size: 13px">Зарегистрироваться</button>
+            <button type="submit" id="btn-registration" class="btn1 btn next-slide" style="font-size: 13px">
+                Зарегистрироваться
+            </button>
         </div>
-
-
     </form>
-    {% if invalid is not None %}
-    <p>{{ invalid }}</p>
-    {% endif %}
     <br>
+    <p id="registration-error">
+        {% if invalid is not None %}
+        {{ invalid }}
+        {% endif %}
+    </p>
     <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
 </div>
+<script>ValidatePassword();</script>
 {% endblock content %}

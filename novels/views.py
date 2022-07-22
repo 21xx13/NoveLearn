@@ -224,7 +224,7 @@ class AddReview(View):
             if request.POST.get("parent", None):
                 form.parent_id = int(request.POST.get("parent"))
             form.name = request.user.username
-            form.email = "test@mail.ru"
+            form.email = request.user.email
             form.novel = novel
             form.save()
         return redirect(novel.get_absolute_url())

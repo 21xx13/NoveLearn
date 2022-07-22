@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
-# from novels.models import MainCycle, Boost
 from django.contrib.auth.models import User
 
-from novels.forms import UserForm
 from novels.models import UserSlides, UserScore, UserTestSlides
 
 
@@ -27,10 +25,13 @@ def user_registration(request):
     if request.method == "POST":
         username = request.POST['login']
         password = request.POST['password']
+        email = request.POST['email']
         if str.strip(username) != '' and str.strip(password) != '':
             if len(User.objects.filter(username=username)) > 0:
                 return False, 'registration.html', {'invalid': f'Пользователь {username} уже существует'}
-            user = User.objects.create_user(username=username, password=password)
+            elif len(User.objects.filter(email=email)) > 0:
+                return False, 'registration.html', {'invalid': f'Пользователь с email {email} уже существует'}
+            user = User.objects.create_user(username=username, password=password, email=email)
             user.save()
             slides_array = UserSlides()
             slides_array.user = user
@@ -41,6 +42,7 @@ def user_registration(request):
             test_slides = UserTestSlides()
             test_slides.user = user
             test_slides.save()
+
             user = authenticate(request, username=username, password=password)
             login(request, user)
             return True, 'index', {}

@@ -167,3 +167,30 @@ window.onload = function () {
     initialize();
 
 }
+
+function ValidatePassword() {
+    let passw = document.getElementById("password");
+    let passw2 = document.getElementById("password2");
+    let re = /(?=.*[0-9])(?=.*[a-z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
+    let btn = document.getElementById("btn-registration");
+    passw.oninput =  (e) => CheckPassword(passw, passw2, btn, re);
+    passw2.oninput = (e) => CheckPassword(passw, passw2, btn, re);
+}
+
+function CheckPassword(passw, passw2, btn, re) {
+    if (passw.value.search(re) === -1) {
+        btn.disabled = true;
+        document.getElementById("registration-error").innerText = "В пароле должно быть минимум 6 символов," +
+            "только латинские буквы, хотя бы одна цифра, могут содержаться спецсимволы: !@#$%^&*";
+    } else if (passw.value !== passw2.value) {
+        btn.disabled = true;
+        document.getElementById("registration-error").innerText = "Пароли должны совпадать";
+        console.log(document.getElementById("registration-error").innerText);
+    } else {
+        btn.disabled = false;
+        document.getElementById("registration-error").innerText = "";
+    }
+}
+
+
+

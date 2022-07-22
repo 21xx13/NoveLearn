@@ -1544,9 +1544,12 @@ ul .lect_li, ol .lect_li{
 }
 
 .login-wrap{
-    width: 20%;
-    margin: 50px auto;
+    width: 50%;
+}
 
+.wrap-main-block{
+    margin: 50px auto;
+    width: 40%;
 }
 
 .icon-list{
