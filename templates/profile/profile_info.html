@@ -4,24 +4,72 @@
 {% block profile %}
 <div class="left-ads-display col-lg-9 profile-main">
     <div class="profile-progress-inside">
-         <h4>Профиль {{user.username}}</h4>
-<!--        {% for novel in novel_list %}-->
-<!--        <div class="col-md-3 product-men">-->
-<!--            <a href="{{ novel.get_absolute_url }}">-->
-<!--                <div class="product-shoe-info editContent text-center mt-lg-4">-->
-<!--                    <div class="men-thumb-item">-->
-<!--                        <img src="{{ novel.poster.url }}" class="img-fluid" alt="">-->
-<!--                    </div>-->
-<!--                    <div class="item-info-product">-->
-<!--                        <h4 class="">-->
-<!--                            <a href="{{ novel.get_absolute_url }}">{{ novel.title }}</a>-->
-<!--                        </h4>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        {% endfor %}-->
+        <h4>Профиль {{user.username}}</h4>
+        <div class="profile-forms">
+            <div class="field-wrapper">
+                <form action="#" method="post" class="w3layouts-newsletter profile-form">
+                    {% csrf_token %}
+                    <div class="label-profile"><label for="login">Логин</label></div>
+
+                    <input type="text" name="login" id="login" placeholder="Введите новый логин" required=""
+                    value="{{ user.username }}">
+                    <button class="btn1 btn profile-changer">Сохранить</button>
+                </form>
+                {% if invalid_login is not None %}
+                <div class="profile-error">{{ invalid_login }}</div>
+                {% endif %}
+            </div>
+            <div class="field-wrapper">
+                <form action="#" method="post" class="w3layouts-newsletter profile-form">
+                    {% csrf_token %}
+                    <div class="label-profile"><label for="email">E-mail</label></div>
+                    <input type="email" name="email" placeholder="Введите новый email" id="email" required=""
+                    value="{{ user.email }}">
+                    <button class="btn1 btn profile-changer">Сохранить</button>
+                </form>
+                {% if invalid_email is not None %}
+                <div class="profile-error">{{ invalid_email }}</div>
+                {% endif %}
+            </div>
+
+            <hr>
+            <h4 class="margin-b-45">Смена пароля</h4>
+
+            <form action="#" method="post" class="w3layouts-newsletter profile-form password-form">
+                {% csrf_token %}
+                <div class="field-wrapper">
+                    <div class="form-group d-flex mb-0">
+                        <div class="label-profile"><label for="old-password">Старый</label></div>
+                        <input type="password" name="password" id="old-password" placeholder="Введите старый пароль"
+                               required="">
+                    </div>
+                    {% if invalid_old_password is not None %}
+                    <div class="profile-error-password">{{ invalid_old_password }}</div>
+                    {% endif %}
+                </div>
+                <div class="field-wrapper">
+                    <div class="form-group d-flex mb-0">
+                        <div class="label-profile"><label for="password">Новый</label></div>
+                        <input type="password" name="password" id="password" placeholder="Введите новый пароль"
+                               required="">
+                    </div>
+                </div>
+                <div class="field-wrapper">
+                    <div class="form-group d-flex mb-0">
+                        <div class="label-profile"><label for="password2">Новый</label></div>
+                        <input type="password" name="password" id="password2" placeholder="Введите новый пароль ещё раз"
+                               required="">
+                    </div>
+                    <div class="profile-error-password" id="error-new-password2"></div>
+                </div>
+                <div align="right">
+                    <button class="btn1 btn profile-changer">Сохранить</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+</div>
 </div>
 {% endblock profile  %}
 
