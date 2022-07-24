@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<ol class="breadcrumb editContent">
+        <li class="breadcrumb-item">
+            <a href="/" class="editContent">Главная</a>
+        </li>
+        <li class="breadcrumb-item active editContent">Профиль пользователя</li>
+    </ol>
+<section class="ab-info-main editContent">
+    {% block container %}
+        <div class="container-fluid profile-container">
+    {% endblock container %}
+    <div class="row">
+        {% block sidebar %}
+        <div class="side-bar col-lg-3 profile-menu">
+        {% endblock sidebar %}
+            {% include 'include/side_profile.html' %}
+        </div>
+            {% block profile %}
+            {% endblock profile %}
+    </div>
+    </div>
+</section>
+{% endblock content %}

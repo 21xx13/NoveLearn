@@ -16,11 +16,11 @@
                 {% if user.is_active %}
                 <li>
                     <div class="avatar-wrap">
-                       <a class="avatar">{{ user.username.0 }}</a>
+                       <a class="avatar" href="{% url 'profile_main' %}">{{ user.username.0 }}</a>
                     </div>
                     <input type="checkbox" id="drop-4">
                     <ul id="profile-list">
-                        <li class="hello"><a class="user-hello">Привет, {{ user.username }}</a></li>
+                        <li class="hello"><a class="user-hello" href="{% url 'profile_main' %}">Привет, {{ user.username }}</a></li>
                         <li class="hello"><a href="{% url 'logout' %}" style="font-weight: 700; text-transform: uppercase;">Выход</a></li>
                     </ul>
                 </li>

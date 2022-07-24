@@ -1661,9 +1661,37 @@ a.move-top span {
     line-height: 2em;
     background: #4a4b4c;
 }
-.CodeMirror
-{
 
+
+.profile-container, .profile-container .row{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.profile-menu{
+    padding: 4rem calc(2rem + 30px) 4rem calc(2rem + 30px) !important;
+    background: #fff;
+}
+
+.profile-main{
+    padding: 4rem calc(3rem + 30px) 4rem 15px !important;
+}
+
+.profile-menu-item{
+    background-color: #1e272e;
+    margin: 15px 0;
+}
+
+.profile-progress-inside{
+    padding: 0 5% !important;
+}
+
+.profile-menu-item .btn1{
+    background-color: #1e272e;
+    /*color: #1e272e !important;*/
+    padding-left: 15px !important;
+    display: block;
+    text-align: left;
 }
 /*-- //to-top --*/
 

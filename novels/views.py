@@ -191,6 +191,14 @@ def course_main_view(request):
     return render(request, 'course/course.html')
 
 
+def profile_main_view(request):
+    return render(request, 'profile/profile_info.html')
+
+
+def profile_progress_view(request):
+    return render(request, 'profile/profile_progress.html')
+
+
 class CourseMainView(ListView):
     model = models.CourseTheme
     queryset = models.CourseTheme.objects.all()

@@ -11,6 +11,8 @@ urlpatterns = [
     path('logout/', views.user_logout, name="logout"),
     path('registration/', views.user_registration, name="registration"),
     path('course/', views.course_main_view, name="course_main"),
+    path('profile/', views.profile_main_view, name="profile_main"),
+    path('profile-progress/', views.profile_progress_view, name="profile_progress"),
     path('course/my-theme/', views.course_lecture),
     path('not-existing-path/', views.error_view, name="not_exist"),
     path('course/<slug:slug>/', views.ThemeDetailView.as_view(), name="theme_detail"),
