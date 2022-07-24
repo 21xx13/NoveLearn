@@ -39,7 +39,8 @@ input[type="button"],
 input[type="submit"],
 input[type="text"],
 input[type="email"],
-input[type="search"] {
+input[type="search"],
+input[type="password"]{
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
@@ -845,6 +846,12 @@ ol.breadcrumb {
     background: #f7f7f7;
 }
 
+.card-body{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 li.breadcrumb-item {
     font-size: 0.9em;
     letter-spacing: 1px;
@@ -1055,7 +1062,7 @@ form.password-form {
 
 .w3layouts-newsletter .btn1 {
     color: #6fdefa !important;
-    font-size: 17px;
+    font-size: 1vw;
     letter-spacing: 1px;
     padding: 14px 0;
     border: transparent;
@@ -1741,7 +1748,16 @@ a.move-top span {
     width: 15%;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+.label-profile-password {
+    width: 11.3%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    padding-right: 7px;
 }
 
 form.profile-form{
@@ -1752,28 +1768,29 @@ form.profile-form{
     margin-bottom: 2.5em;
 }
 
-.profile-error{
+.profile-error, .profile-error-password{
     font-size: 0.9em  !important;
     letter-spacing: 1px;
+}
+
+.profile-error{
     padding-left: 10%;
 }
 
 .profile-error-password{
-    font-size: 0.9em  !important;
-    letter-spacing: 1px;
-    padding-left: 13%;
+    padding-left: 10%;
 }
 
 /*-- //to-top --*/
 
 @media (max-width: 1366px) {
     .main-banner {
-        min-height: 45em;
+        min-height: 30em;
     }
 
     .banner-info {
-        padding: 16em 0 0em 3em;
-        width: 38%;
+        padding: 12em 0 0em 3em;
+        width: 60%;
     }
 
     .service-content h4 {
@@ -1787,7 +1804,7 @@ form.profile-form{
     }
 
     .main-banner {
-        min-height: 40em;
+        min-height: 30em;
     }
 
     .main-banner.inner {
@@ -1802,7 +1819,7 @@ form.profile-form{
     }
 
     .main-banner {
-        min-height: 38em;
+        min-height: 15em;
     }
 
     h3.tittle {
@@ -1887,7 +1904,7 @@ form.profile-form{
     }
 
     .main-banner {
-        min-height: 38em;
+        min-height: 15em;
     }
 
     .feature-grids h3,
@@ -1907,7 +1924,7 @@ form.profile-form{
     }
 
     .main-banner {
-        min-height: 30em;
+        min-height: 15em;
     }
 
     h3.tittle {
@@ -1925,6 +1942,14 @@ form.profile-form{
         padding: 2em 0;
         margin: 0 auto;
         width: 94%;
+    }
+
+    .slider-block, #slider-title{
+        display: none;
+    }
+
+    .w3layouts-newsletter .btn1{
+        font-size: 17px;
     }
 }
 
@@ -1983,7 +2008,7 @@ form.profile-form{
 
 @media (max-width: 640px) {
     .main-banner {
-        min-height: 28em;
+        min-height: 15em;
     }
 
     .banner-info {
@@ -2021,7 +2046,7 @@ form.profile-form{
 
 @media (max-width: 480px) {
     .main-banner {
-        min-height: 25em;
+        min-height: 15em;
     }
 
     .banner-info {
@@ -2051,7 +2076,7 @@ form.profile-form{
     }
 
     .main-banner {
-        min-height: 23em;
+        min-height: 15em;
     }
 
     .item-info-product h4 a {

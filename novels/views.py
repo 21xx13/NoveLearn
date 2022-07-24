@@ -192,7 +192,9 @@ def course_main_view(request):
 
 
 def profile_main_view(request):
-    return render(request, 'profile/profile_info.html')
+    template, params, user = services.auth_services.change_profile(request)
+    request.user = user
+    return render(request, template, params)
 
 
 def profile_progress_view(request):
