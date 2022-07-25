@@ -1781,6 +1781,15 @@ form.profile-form{
     padding-left: 10%;
 }
 
+.login-text-link{
+    margin-bottom: 0 !important;
+}
+
+.login-text-wrap{
+    text-align: left;
+    width: 50%;
+    margin: 0 auto;
+}
 /*-- //to-top --*/
 
 @media (max-width: 1366px) {

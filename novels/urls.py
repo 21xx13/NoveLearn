@@ -6,6 +6,7 @@ urlpatterns = [
     path('catalog/', views.NovelView.as_view()),
     path('', views.index_view, name="index"),
     path('login/', views.user_login, name='login'),
+    path('restore-password/', views.restore_password_view, name='restore'),
     # path('signin/', views.sign_in, name='sign_in'),
     # path('register/', views.register, name='register'),
     path('logout/', views.user_logout, name="logout"),

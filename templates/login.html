@@ -29,6 +29,10 @@
         {% endif %}
     </form>
     <br>
-    <p>Ещё нет аккаунта? <a href="/registration">Зарегистрироваться</a></p>
+    <div class="login-text-wrap">
+        <p class="login-text-link">Ещё нет аккаунта? <a href="/registration">Зарегистрироваться</a></p>
+        <p class="login-text-link">Забыли пароль?<a href="{% url 'restore' %}">Восстановить</a></p>
+    </div>
+
 </div>
 {% endblock content %}
