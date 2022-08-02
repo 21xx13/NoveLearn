@@ -171,7 +171,7 @@ window.onload = function () {
 function ValidatePassword(btnId, passId1, passId2, errorId) {
     let passw = document.getElementById(passId1);
     let passw2 = document.getElementById(passId2);
-    let re = /(?=.*[0-9])(?=.*[a-z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
+    let re = /(?=.*[0-9])(?=.*[a-z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
     let btn = document.getElementById(btnId);
     passw.oninput =  (e) => CheckPassword(passw, passw2, btn, re, errorId);
     passw2.oninput = (e) => CheckPassword(passw, passw2, btn, re, errorId);
@@ -180,7 +180,7 @@ function ValidatePassword(btnId, passId1, passId2, errorId) {
 function CheckPassword(passw, passw2, btn, re, errorId) {
     if (passw.value.search(re) === -1) {
         btn.disabled = true;
-        document.getElementById(errorId).innerText = "В пароле должно быть минимум 6 символов," +
+        document.getElementById(errorId).innerText = "В пароле должно быть минимум 8 символов," +
             "только латинские буквы, хотя бы одна цифра, могут содержаться спецсимволы: !@#$%^&*";
     } else if (passw.value !== passw2.value) {
         btn.disabled = true;

@@ -1,6 +1,7 @@
-from django.urls import path
+from django.contrib.auth import views as auth_views
+from django.urls import path, re_path
 from . import views
-
+from .forms import UserPasswordResetForm, UserSetPasswordForm
 
 urlpatterns = [
     path('catalog/', views.NovelView.as_view()),
@@ -40,4 +41,15 @@ urlpatterns = [
     path('answers/', views.UserAnswerList.as_view()),
     path('answers/<int:pk>/', views.UserAnswerDetail.as_view()),
     path('add_slide/', views.add_user_slide, name="add_slide"),
+    path('password-reset/', auth_views.PasswordResetView.as_view(
+        template_name='registration/password_reset_form.html',
+        form_class=UserPasswordResetForm), name='password_reset'),
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    re_path(r'^password-reset/confirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$',
+            auth_views.PasswordResetConfirmView.as_view(
+                template_name="registration/password_reset_confirm.html",
+                form_class=UserSetPasswordForm
+            ), name='password_reset_confirm'),
+    path(r'password-reset/complete/', auth_views.PasswordResetCompleteView.as_view(),
+         {'template_name': "users/registration/password_reset_complete.html"}, name='password_reset_complete'),
 ]

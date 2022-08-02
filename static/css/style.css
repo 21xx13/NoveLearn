@@ -1722,6 +1722,28 @@ a.move-top span {
     font-size: 14px;
 }
 
+.profile-form .col-xl-3 .profile-changer, .profile-form .col-3 .profile-changer{
+    width: 100%;
+}
+
+.profile-forms .col-3, .profile-forms .col-7, .profile-forms .col-2, .profile-forms .col-10,
+.profile-forms .container-fluid, .profile-forms .col-xl-1, .profile-forms .col-xl-7,
+.profile-forms .col-xl-3,.profile-forms .col-sm-12, .password-form .col-md-9, .password-form .col-xl-10,
+.reset-password-wrap .profile-form .col-xl-9, .reset-password-wrap .profile-form .col-lg-8,
+.reset-password-wrap .profile-form .col-md-7, .reset-password-wrap .profile-form .col-sm-8,
+.reset-password-wrap .profile-form .col-7, .btn-wrap-reset{
+    padding: 0 !important;
+}
+
+.profile-forms .col-sm-12 input, .password-form .col-md-9 input, .password-form .col-xl-10 input,
+.profile-forms .col-sm-7 input, .profile-forms .col-md-6 input, .profile-forms .col-xl-7 input,
+.profile-forms .col-lg-5 input, .w3layouts-newsletter .btn1 input, .profile-forms .col-md-4 input,
+.profile-forms .col-sm-8 input, .profile-forms .col-7 input, .reset-password-wrap .profile-form .row input,
+.btn-wrap-reset button
+{
+    width: 100% !important;
+}
+
 .w3layouts-newsletter.profile-form input[type="email"], .w3layouts-newsletter.profile-form input[type="text"],
 .w3layouts-newsletter.profile-form input[type="password"]
 {
@@ -1753,7 +1775,7 @@ a.move-top span {
 }
 
 .label-profile-password {
-    width: 11.3%;
+    width: 30%;
     display: flex;
     align-items: flex-end;
     justify-content: end;
@@ -1790,7 +1812,69 @@ form.profile-form{
     width: 50%;
     margin: 0 auto;
 }
+.w3layouts-newsletter p{
+    display: flex;
+    align-items: end;
+
+}
+
+.w3layouts-newsletter label{
+    display: flex;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+.reset-password-wrap form input[type="email"], #id_new_password1, #id_new_password2,
+.login-wrap .my-input{
+    padding: 0.6em 1em;
+    font-size: 15px;
+    color: #000;
+    outline: none;
+    letter-spacing: 1px;
+    border: none;
+    flex-basis: 100%;
+    background: #f7f7f7;
+}
+
+.login-wrap .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#id_new_password1, #id_new_password2{
+    width: 60%;
+}
+
+.reset-password-wrap .profile-changer{
+    font-size: 14px !important;
+}
+
+.reset-password-wrap form {
+    display: flex;
+    align-items: flex-end;
+}
+
+.reset-password-wrap form label{
+    width: 20%;
+}
+
+.login-wrap .form-group label p{
+    margin-bottom: 0 !important;
+}
+.reset-password-confirm-wrap p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /*-- //to-top --*/
+@media(min-width: 2000px){
+    .profile-menu .w3layouts-newsletter .btn1{
+        font-size: 17px !important;
+    }
+}
 
 @media (max-width: 1366px) {
     .main-banner {
@@ -1804,6 +1888,14 @@ form.profile-form{
 
     .service-content h4 {
         font-size: 1em;
+    }
+
+    .label-profile{
+        width: 18%;
+    }
+
+    .label-profile-password{
+        width: 36%;
     }
 }
 
@@ -1920,6 +2012,18 @@ form.profile-form{
     .bottom-gd.fea h3 {
         font-size: 0.9em;
     }
+
+    .login-wrap, #id_new_password1, #id_new_password2{
+        width: 100%;
+    }
+
+    .wrap-main-block{
+        width: 40%;
+    }
+
+    .login-text-wrap{
+        width: 100%;
+    }
 }
 
 @media (max-width: 800px) {
@@ -1959,6 +2063,22 @@ form.profile-form{
 
     .w3layouts-newsletter .btn1{
         font-size: 17px;
+    }
+
+    .login-wrap, #id_new_password1, #id_new_password2{
+        width: 100%;
+    }
+
+    .wrap-main-block{
+        width: 60%;
+    }
+
+    .login-text-wrap{
+        width: 100%;
+    }
+
+    .profile-forms{
+        width: 100%;
     }
 }
 
@@ -2049,6 +2169,10 @@ form.profile-form{
 
     .sub-para-w3layouts {
         margin: 0;
+    }
+
+    .profile-main{
+        padding: 15px !important;
     }
 
 }

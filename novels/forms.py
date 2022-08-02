@@ -1,14 +1,17 @@
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 from .models import Reviews
 
 
 class ReviewForm(forms.ModelForm):
     """Форма отзывов"""
+
     class Meta:
         model = Reviews
-        fields = ("text", )
+        fields = ("text",)
 
 
 class UserForm(forms.ModelForm):
@@ -26,3 +29,41 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class UserPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+        'placeholder': 'Введите E-mail',
+        'type': 'email',
+        'name': 'email'
+    }))
+
+
+class UserSetPasswordForm(SetPasswordForm):
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(SetPasswordForm, self).__init__(*args, **kwargs)
+
+    new_password1 = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
+                                          'placeholder': 'Новый пароль',
+                                          'type': 'password',
+                                          'name': 'new_password1'
+                                          }),
+        strip=False
+    )
+    new_password2 = forms.CharField(
+        label="Ещё раз",
+        strip=False,
+        help_text="<br>В пароле должно быть минимум 8 символов, только латинские буквы, хотя бы одна цифра, "
+                  "могут содержаться спецсимволы: !@#$%^&*x",
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
+                                          'placeholder': 'Ещё раз',
+                                          'type': 'password',
+                                          'name': 'new_password2'
+                                          }),
+    )

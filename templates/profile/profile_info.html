@@ -9,10 +9,18 @@
             <div class="field-wrapper">
                 <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form">
                     {% csrf_token %}
-                    <div class="label-profile"><label for="login">Логин</label></div>
-                    <input type="text" name="login" id="login" placeholder="Введите новый логин" required=""
-                           value="{%if input_val is not None%}{{input_val}}{% else %}{{ user.username }}{%endif%}">
-                    <button class="btn1 btn profile-changer">Сохранить</button>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="label-profile col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="login">Логин</label></div>
+                            <div class="col-xl-7 col-lg-5 col-md-4 col-sm-8 col-7">
+                                <input type="text" name="login" id="login" placeholder="Введите новый логин" required=""
+                                       value="{%if input_val is not None%}{{input_val}}{% else %}{{ user.username }}{%endif%}">
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-5 col-sm-4 col-5">
+                                <button class="btn1 btn profile-changer">Сохранить</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 {% if invalid_login is not None %}
                 <div class="profile-error">{{ invalid_login }}</div>
@@ -21,10 +29,19 @@
             <div class="field-wrapper">
                 <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form">
                     {% csrf_token %}
-                    <div class="label-profile"><label for="email">E-mail</label></div>
-                    <input type="email" name="email" placeholder="Введите новый email" id="email" required=""
-                           value="{%if input_email is not None%}{{input_email}}{% else %}{{ user.email }}{%endif%}">
-                    <button class="btn1 btn profile-changer">Сохранить</button>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="label-profile col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="email">E-mail</label></div>
+                            <div class="col-xl-7 col-lg-5 col-md-4 col-sm-8 col-7">
+                                <input type="email" name="email" placeholder="Введите новый email" id="email"
+                                       required=""
+                                       value="{%if input_email is not None%}{{input_email}}{% else %}{{ user.email }}{%endif%}">
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-5 col-sm-4 col-5">
+                                <button class="btn1 btn profile-changer">Сохранить</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 {% if invalid_email is not None %}
                 <div class="profile-error">{{ invalid_email }}</div>
@@ -38,28 +55,43 @@
                   class="w3layouts-newsletter profile-form password-form">
                 {% csrf_token %}
                 <div class="field-wrapper">
-                    <div class="form-group d-flex mb-0">
-                        <div class="label-profile-password"><label for="old-password">Старый</label></div>
-                        <input type="password" name="old-password" id="old-password" placeholder="Введите старый пароль"
-                               required="">
-                    </div>
-                    {% if invalid_old_password is not None %}
-                    <div class="profile-error-password">{{ invalid_old_password }}</div>
-                    {% endif %}
-                </div>
-                <div class="field-wrapper">
-                    <div class="form-group d-flex mb-0">
-                        <div class="label-profile-password"><label for="password">Новый</label></div>
-                        <input type="password" name="new-password" id="password" placeholder="Введите новый пароль"
-                               required="">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="old-password">Старый</label></div>
+                            <div class="col-xl-10 col-md-9 col-sm-12"><input type="password" name="old-password" id="old-password"
+                                                       placeholder="Введите старый пароль"
+                                                       required=""></div>
+                            {% if invalid_old_password is not None %}
+                            <div class="profile-error-password">{{ invalid_old_password }}</div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
                 <div class="field-wrapper">
-                    <div class="form-group d-flex mb-0">
-                        <div class="label-profile-password"><label for="password2">Новый</label></div>
-                        <input type="password" name="new-password-2" id="password2" placeholder="Введите новый пароль ещё раз"
-                               required="">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="password">Новый</label></div>
+                            <div class="col-xl-10 col-md-9 col-sm-12">
+                                <input type="password" name="new-password" id="password"
+                                       placeholder="Введите новый пароль"
+                                       required="">
+                            </div>
+                        </div>
                     </div>
+
+                </div>
+                <div class="field-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="password2">Новый</label></div>
+                            <div class="col-xl-10 col-md-9 col-sm-12">
+                                <input type="password" name="new-password-2" id="password2"
+                                       placeholder="Введите новый пароль ещё раз"
+                                       required="">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="profile-error-password" id="error-new-password"></div>
                 </div>
                 <div align="right">
@@ -70,6 +102,6 @@
     </div>
 </div>
 
-<script>ValidatePassword("pass-change-btn",  "password", "password2", "error-new-password");</script>
+<script>ValidatePassword("pass-change-btn", "password", "password2", "error-new-password");</script>
 {% endblock profile  %}
 
