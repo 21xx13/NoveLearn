@@ -162,13 +162,11 @@ nav ul li {
 
 /* Styling the links */
 
-.menu li a {
+.menu li a, .navbar-nav li .nav-link{
     font-weight: 700;
     font-size: 0.8em;
     letter-spacing: 2px;
-    padding-left: 0;
-    padding-right: 0;
-    padding: 10px 0;
+    padding: 10px 0 !important;
     margin: 0px 1em;
     color: #d4d4d4;
     text-transform: uppercase;
@@ -178,6 +176,13 @@ nav ul li {
     -ms-transition: 0.5s all ease;
 }
 
+.navbar-nav li .nav-link{
+    color: #d4d4d4 !important;
+}
+
+.navbar-nav li .nav-link:hover{
+    color: #fff !important;
+}
 
 .user-hello {
     font-weight: 700;
@@ -198,7 +203,7 @@ nav ul li {
 
 .menu li ul li a, .user-hello {
     color: #555;
-    padding: 10px 10px;
+    padding: 10px 10px !important;
     font-size: 0.8em;
 }
 
@@ -206,6 +211,35 @@ nav ul li {
 .menu li ul li:hover {
     background: #868686 !important;
 }
+
+.dropdown-menu div:hover {
+    background: #868686 !important;
+}
+
+.dropdown-menu{
+    padding: 0 !important;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+    left: -30px;
+    width: 170px;
+}
+
+.dropdown-menu div a:hover {
+    color: #fff !important;
+    cursor: pointer;
+    background: none !important;
+}
+.dropdown-menu div a {
+    color: #555;
+    padding: 10px 10px !important;
+    font-size: 0.8em;
+    text-transform: uppercase ;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0px 1em;
+}
+
 
 /* Background color change on Hover */
 
@@ -222,7 +256,7 @@ nav .menu li a:hover, .user-hello:hover {
  * and giving it a position of absolute */
 
 nav ul ul {
-    display: none;
+    display: block;
     position: absolute;
     /* has to be the same number as the "line-height" of "nav a" */
     top: 30px;
@@ -250,6 +284,12 @@ nav ul ul li a {
     color: #333;
     padding: 5px 10px;
     display: block;
+
+}
+
+.dropdown-menu div {
+    margin: 0;
+overflow-wrap: break-word;
 }
 
 /* Second, Third and more Tiers
@@ -1398,6 +1438,28 @@ ul.w3layouts-icons li a {
     border-radius: 50%;
 }
 
+
+.nav-link.avatar {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(20, 20, 20, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 20px !important;
+}
+
+#profile-list-wrap{
+    left: -10px;
+    width: 110px !important;
+    min-width: 0 ;
+}
+
+.navbar-expand-md .container-fluid{
+    padding: 0 20px;
+}
+
 .avatar {
     font-size: 25px !important;
     color: #d4d4d4 !important;
@@ -1867,6 +1929,15 @@ form.profile-form{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.bg-dark{
+    background-color: #00000045 !important;
+    padding: 1.5rem !important;
+}
+
+.navbar-brand{
+    font-weight: 700 !important;
 }
 
 /*-- //to-top --*/

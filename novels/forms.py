@@ -60,7 +60,7 @@ class UserSetPasswordForm(SetPasswordForm):
         label="Ещё раз",
         strip=False,
         help_text="<br>В пароле должно быть минимум 8 символов, только латинские буквы, хотя бы одна цифра, "
-                  "могут содержаться спецсимволы: !@#$%^&*x",
+                  "могут содержаться спецсимволы: !@#$%^&*",
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
                                           'placeholder': 'Ещё раз',
                                           'type': 'password',
