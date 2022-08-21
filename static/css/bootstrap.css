@@ -3276,7 +3276,6 @@ tbody.collapse.show {
   font-weight: 400;
   color: #212529;
   text-align: inherit;
-  white-space: nowrap;
   background-color: transparent;
   border: 0;
 }

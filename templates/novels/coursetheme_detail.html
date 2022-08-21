@@ -28,7 +28,7 @@
                 <br>
                 {% if coursetheme.name == "Итоговый тест" %} <p>Далее вас ждет итоговый тест. Он представляет из себя выборку тестовых вопросов из 10 тем.</p> {% endif %}
                 {% if coursetheme.name != "Итоговый тест" %}<p>Пришло время для проверки знаний! Ответьте на все тестовые вопросы.</p>{% endif %}
-                {% for block in task_slide.taskblock_set.all %}
+                {% for block in task_slide.taskblock_set.all|dictsort:"number" %}
                 {% if not block.is_code_block %}
                 <div class="task-block" id="task-block-{{block.number}}">
                     <form action="{% url 'check_answers' block.id %}" class="form-test quiz-form" method="post">

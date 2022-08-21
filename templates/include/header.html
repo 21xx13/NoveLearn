@@ -26,9 +26,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <div><a href="/course" class="dropdown-item">Курс по<br> RenPy</a></div>
-                        <div><a href="{% url 'not_exist' %}" class="dropdown-item">Игровые <br>механики</a></div>
+                        <div><a href="{% url 'not_exist' %}" class="dropdown-item">Игровые механики</a></div>
                         <div><a href="{% url 'not_exist' %}" class="dropdown-item">Типы новелл</a></div>
-                        <div><a href="{% url 'not_exist' %}" class="dropdown-item">Материалы<br> для <br>разработки</a></div>
+                        <div><a href="{% url 'not_exist' %}" class="dropdown-item">Материалы <br>для <br>разработки</a></div>
                     </div>
                 </li>
                 {% if not user.is_active %}
@@ -37,13 +37,19 @@
                 </li>
                 {% endif %}
                 {% if user.is_active %}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown avatar-dropdown">
                         <a class="avatar nav-link" id="login-item-list" aria-haspopup="true" aria-expanded="false"
                            data-toggle="dropdown" href="#">{{ user.username.0 }}</a>
                     <div class="dropdown-menu" aria-labelledby="login-item-list" id="profile-list-wrap">
-                        <div><a href="{% url 'profile_main' %}" class="dropdown-item">Привет, <br> {{user.username}}</a></div>
+                        <div><a href="{% url 'profile_main' %}" class="dropdown-item">Привет, {{user.username}}</a></div>
                         <div><a href="{% url 'logout' %}" class="dropdown-item">Выход</a></div>
                     </div>
+                </li>
+                <li class="nav-item mobile-item">
+                    <a href="{% url 'profile_main' %}" class="nav-link">Профиль пользователя</a>
+                </li>
+                <li class="nav-item mobile-item">
+                    <a href="{% url 'logout' %}" class="nav-link">Выход</a>
                 </li>
                 {% endif %}
             </ul>

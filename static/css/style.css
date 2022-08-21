@@ -40,7 +40,7 @@ input[type="submit"],
 input[type="text"],
 input[type="email"],
 input[type="search"],
-input[type="password"]{
+input[type="password"] {
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
@@ -162,7 +162,7 @@ nav ul li {
 
 /* Styling the links */
 
-.menu li a, .navbar-nav li .nav-link{
+.menu li a, .navbar-nav li .nav-link {
     font-weight: 700;
     font-size: 0.8em;
     letter-spacing: 2px;
@@ -176,11 +176,11 @@ nav ul li {
     -ms-transition: 0.5s all ease;
 }
 
-.navbar-nav li .nav-link{
+.navbar-nav li .nav-link {
     color: #d4d4d4 !important;
 }
 
-.navbar-nav li .nav-link:hover{
+.navbar-nav li .nav-link:hover {
     color: #fff !important;
 }
 
@@ -216,7 +216,7 @@ nav ul li {
     background: #868686 !important;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     padding: 0 !important;
     border-radius: 0;
     margin: 0;
@@ -230,11 +230,12 @@ nav ul li {
     cursor: pointer;
     background: none !important;
 }
+
 .dropdown-menu div a {
     color: #555;
     padding: 10px 10px !important;
     font-size: 0.8em;
-    text-transform: uppercase ;
+    text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 2px;
     margin: 0px 1em;
@@ -289,7 +290,7 @@ nav ul ul li a {
 
 .dropdown-menu div {
     margin: 0;
-overflow-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Second, Third and more Tiers
@@ -886,8 +887,8 @@ ol.breadcrumb {
     background: #f7f7f7;
 }
 
-.card-body{
-    display:flex;
+.card-body {
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -1450,13 +1451,13 @@ ul.w3layouts-icons li a {
     margin-left: 20px !important;
 }
 
-#profile-list-wrap{
+#profile-list-wrap {
     left: -10px;
     width: 110px !important;
-    min-width: 0 ;
+    min-width: 0;
 }
 
-.navbar-expand-md .container-fluid{
+.navbar-expand-md .container-fluid {
     padding: 0 20px;
 }
 
@@ -1784,16 +1785,16 @@ a.move-top span {
     font-size: 14px;
 }
 
-.profile-form .col-xl-3 .profile-changer, .profile-form .col-3 .profile-changer{
+.profile-form .col-xl-3 .profile-changer, .profile-form .col-3 .profile-changer {
     width: 100%;
 }
 
 .profile-forms .col-3, .profile-forms .col-7, .profile-forms .col-2, .profile-forms .col-10,
 .profile-forms .container-fluid, .profile-forms .col-xl-1, .profile-forms .col-xl-7,
-.profile-forms .col-xl-3,.profile-forms .col-sm-12, .password-form .col-md-9, .password-form .col-xl-10,
+.profile-forms .col-xl-3, .profile-forms .col-sm-12, .password-form .col-md-9, .password-form .col-xl-10,
 .reset-password-wrap .profile-form .col-xl-9, .reset-password-wrap .profile-form .col-lg-8,
 .reset-password-wrap .profile-form .col-md-7, .reset-password-wrap .profile-form .col-sm-8,
-.reset-password-wrap .profile-form .col-7, .btn-wrap-reset{
+.reset-password-wrap .profile-form .col-7, .btn-wrap-reset {
     padding: 0 !important;
 }
 
@@ -1801,14 +1802,12 @@ a.move-top span {
 .profile-forms .col-sm-7 input, .profile-forms .col-md-6 input, .profile-forms .col-xl-7 input,
 .profile-forms .col-lg-5 input, .w3layouts-newsletter .btn1 input, .profile-forms .col-md-4 input,
 .profile-forms .col-sm-8 input, .profile-forms .col-7 input, .reset-password-wrap .profile-form .row input,
-.btn-wrap-reset button
-{
+.btn-wrap-reset button {
     width: 100% !important;
 }
 
 .w3layouts-newsletter.profile-form input[type="email"], .w3layouts-newsletter.profile-form input[type="text"],
-.w3layouts-newsletter.profile-form input[type="password"]
-{
+.w3layouts-newsletter.profile-form input[type="password"] {
     padding: 0.6em 1em;
     font-size: 15px;
     color: #000;
@@ -1819,7 +1818,7 @@ a.move-top span {
     background: #f7f7f7;
 }
 
-.margin-b-45{
+.margin-b-45 {
     margin-bottom: 45px;
 }
 
@@ -1844,50 +1843,47 @@ a.move-top span {
     padding-right: 7px;
 }
 
-form.profile-form{
+form.profile-form {
     margin-bottom: 5px !important;
 }
 
-.field-wrapper{
+.field-wrapper {
     margin-bottom: 2.5em;
 }
 
-.profile-error, .profile-error-password{
-    font-size: 0.9em  !important;
+.profile-error, .profile-error-password {
+    font-size: 0.9em !important;
     letter-spacing: 1px;
 }
 
-.profile-error{
-    padding-left: 10%;
+.profile-error, .profile-error-password {
+    padding-left:calc(15% + 15px);
 }
 
-.profile-error-password{
-    padding-left: 10%;
-}
-
-.login-text-link{
+.login-text-link {
     margin-bottom: 0 !important;
 }
 
-.login-text-wrap{
+.login-text-wrap {
     text-align: left;
     width: 50%;
     margin: 0 auto;
 }
-.w3layouts-newsletter p{
+
+.w3layouts-newsletter p {
     display: flex;
     align-items: end;
 
 }
 
-.w3layouts-newsletter label{
+.w3layouts-newsletter label {
     display: flex;
     justify-content: end;
     padding-right: 10px;
 }
 
 .reset-password-wrap form input[type="email"], #id_new_password1, #id_new_password2,
-.login-wrap .my-input{
+.login-wrap .my-input {
     padding: 0.6em 1em;
     font-size: 15px;
     color: #000;
@@ -1898,18 +1894,17 @@ form.profile-form{
     background: #f7f7f7;
 }
 
-.login-wrap .form-group{
+.login-wrap .form-group {
     display: flex;
     flex-direction: column;
 }
 
 
-
-#id_new_password1, #id_new_password2{
+#id_new_password1, #id_new_password2 {
     width: 60%;
 }
 
-.reset-password-wrap .profile-changer{
+.reset-password-wrap .profile-changer {
     font-size: 14px !important;
 }
 
@@ -1918,31 +1913,48 @@ form.profile-form{
     align-items: flex-end;
 }
 
-.reset-password-wrap form label{
+.reset-password-wrap form label {
     width: 20%;
 }
 
-.login-wrap .form-group label p{
+.login-wrap .form-group label p {
     margin-bottom: 0 !important;
 }
-.reset-password-confirm-wrap p{
+
+.reset-password-confirm-wrap p {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.bg-dark{
+.navbar-dark .navbar-toggler {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-dark {
     background-color: #00000045 !important;
     padding: 1.5rem !important;
 }
 
-.navbar-brand{
+.navbar-brand {
     font-weight: 700 !important;
 }
 
+.mobile-item{
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .nav-item {
+        display: flex;
+        align-items: center;
+    }
+
+}
+
 /*-- //to-top --*/
-@media(min-width: 2000px){
-    .profile-menu .w3layouts-newsletter .btn1{
+@media (min-width: 2000px) {
+    .profile-menu .w3layouts-newsletter .btn1 {
         font-size: 17px !important;
     }
 }
@@ -1961,11 +1973,11 @@ form.profile-form{
         font-size: 1em;
     }
 
-    .label-profile{
+    .label-profile {
         width: 18%;
     }
 
-    .label-profile-password{
+    .label-profile-password {
         width: 36%;
     }
 }
@@ -1981,6 +1993,12 @@ form.profile-form{
 
     .main-banner.inner {
         min-height: 15em;
+    }
+}
+
+@media (max-width: 1200px) {
+    .profile-error, .profile-error-password{
+        padding-left:25%;
     }
 }
 
@@ -2026,7 +2044,6 @@ form.profile-form{
 
     ul.navbar-nav {
         margin-top: 10px;
-        background: #101315;
     }
 
     li.nav-item {
@@ -2084,15 +2101,15 @@ form.profile-form{
         font-size: 0.9em;
     }
 
-    .login-wrap, #id_new_password1, #id_new_password2{
+    .login-wrap, #id_new_password1, #id_new_password2 {
         width: 100%;
     }
 
-    .wrap-main-block{
+    .wrap-main-block {
         width: 40%;
     }
 
-    .login-text-wrap{
+    .login-text-wrap {
         width: 100%;
     }
 }
@@ -2128,28 +2145,65 @@ form.profile-form{
         width: 94%;
     }
 
-    .slider-block, #slider-title{
+    .slider-block, #slider-title {
         display: none;
     }
 
-    .w3layouts-newsletter .btn1{
+    .w3layouts-newsletter .btn1 {
         font-size: 17px;
     }
 
-    .login-wrap, #id_new_password1, #id_new_password2{
+    .login-wrap, #id_new_password1, #id_new_password2 {
         width: 100%;
     }
 
-    .wrap-main-block{
+    .wrap-main-block {
         width: 60%;
     }
 
-    .login-text-wrap{
+    .login-text-wrap {
         width: 100%;
     }
 
-    .profile-forms{
+    .profile-forms {
         width: 100%;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar-expand-md .container-fluid{
+        padding: 0;
+    }
+
+    .bg-dark{
+        padding: 1.5rem 0 !important;
+    }
+
+    .bg-dark .container-fluid button{
+        margin-right: calc(1.5rem + 20px);
+    }
+
+    .bg-dark .container-fluid h1{
+        margin-left: calc(1.5rem + 20px);
+    }
+
+    .bg-dark .container-fluid ul .nav-link, .bg-dark .container-fluid ul .dropdown-item{
+        padding-left: calc(1.5rem + 20px) !important;
+        padding-right: calc(1.5rem + 20px) !important;
+    }
+
+    .mobile-item{
+        display: block !important;
+    }
+
+    .avatar-dropdown{
+        display: none;
+    }
+    .profile-error, .profile-error-password{
+        padding-left:0;
     }
 }
 
@@ -2242,8 +2296,13 @@ form.profile-form{
         margin: 0;
     }
 
-    .profile-main{
+    .profile-main {
         padding: 15px !important;
+    }
+
+    .ab-info-main.py-md-5.py-4{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
 }

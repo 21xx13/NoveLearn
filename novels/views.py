@@ -246,10 +246,10 @@ class AddReview(View):
 
 def recount_score(user):
     score = models.UserScore.objects.get(user=user)
-    questions = models.TaskQuestion.objects.all()
+    questions = models.TaskQuestion.objects.order_by('id')
     temp_score = 0
     for q in questions:
-        u_a = models.UserAnswer.objects.filter(user=user).filter(quest_code=q.code)
+        u_a = models.UserAnswer.objects.filter(user=user).filter(quest_code=q.code).order_by('id')
         if len(u_a) > 0 and u_a[len(u_a) - 1].is_correct and not u_a[len(u_a) - 1].is_cleared:
             temp_score += q.weight
     score.score = temp_score
@@ -301,7 +301,7 @@ class AnswerChecker(View):
         all_q = [x for l in [(q.taskquestion_set.all()) for q in all_blocks] for x in l]
         is_done = True
         for q in all_q:
-            us_a = models.UserAnswer.objects.filter(user=user).filter(id_quest=q)
+            us_a = models.UserAnswer.objects.filter(user=user).filter(id_quest=q).order_by('id')
             if len(us_a) == 0 or us_a[len(us_a) - 1].is_cleared:
                 is_done = False
                 break
@@ -330,10 +330,12 @@ class AnswerChecker(View):
 
 def clear_answers(request, pk):
     block = models.TaskBlock.objects.get(id=pk)
-    quests = block.taskquestion_set.all()
+    quests = block.taskquestion_set.all().order_by('id')
     for q in quests:
-        answers = models.UserAnswer.objects.filter(user=request.user).filter(id_quest=q)
+        answers = models.UserAnswer.objects.filter(user=request.user).filter(id_quest=q).order_by('id')
+        print(answers)
         if len(answers) > 0:
+            print(answers[len(answers) - 1])
             answers[len(answers) - 1].is_cleared = True
             answers[len(answers) - 1].save()
 

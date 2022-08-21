@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-u)&1d1%ux&n6r1c+g(#!doug7b$3&553!$w)@aas@r7l*dgn!%
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", 'novelearn.ru', 'novelearn.ai-info.ru', 'www.novelearn.ru']
 
 DATABASES = {
     'default': {

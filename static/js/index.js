@@ -62,6 +62,16 @@ window.onload = function () {
                 for (let q of codesList) {
                     let answers = allAnswers.filter(item => item.user === userId && item.quest_code === q);
                     if (answers.length > 0) {
+                        function compare(a, b) {
+                            if (a.id < b.id) {
+                                return -1;
+                            }
+                            if (a.id > b.id) {
+                                return 1;
+                            }
+                            return 0;
+                        }
+                        answers.sort(compare);
                         let anwswerLast = answers[answers.length - 1];
                         if (!anwswerLast.is_cleared) {
                             let qIdResp = await fetch('/questions/' + anwswerLast.id_quest, {
@@ -173,7 +183,7 @@ function ValidatePassword(btnId, passId1, passId2, errorId) {
     let passw2 = document.getElementById(passId2);
     let re = /(?=.*[0-9])(?=.*[a-z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
     let btn = document.getElementById(btnId);
-    passw.oninput =  (e) => CheckPassword(passw, passw2, btn, re, errorId);
+    passw.oninput = (e) => CheckPassword(passw, passw2, btn, re, errorId);
     passw2.oninput = (e) => CheckPassword(passw, passw2, btn, re, errorId);
 }
 
