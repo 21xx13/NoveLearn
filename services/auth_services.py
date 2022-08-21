@@ -28,7 +28,7 @@ def user_registration(request):
     if request.method == "POST":
         username = request.POST['login']
         password = request.POST['password']
-        email = request.POST['email']
+        email = str.lower(request.POST['email'])
         if str.strip(username) != '' and str.strip(password) != '':
             if len(User.objects.filter(username=username)) > 0:
                 return False, 'registration.html', {'invalid': f'Пользователь {username} уже существует'}
@@ -93,7 +93,7 @@ def change_password(request):
 
 
 def change_email(request):
-    email = request.POST['email']
+    email = str.lower(request.POST['email'])
     if str.strip(email) != '':
         if len(User.objects.filter(email=email)) > 0:
             if request.user.email == email:
