@@ -182,6 +182,12 @@ def index_view(request):
     return render(request, 'index.html')
 
 
+
+def page_not_found_view(request, exception):
+    referer = request.META.get('HTTP_REFERER')
+    return render(request, '404.html', {'redirect_url': referer}, status=404)
+
+
 def error_view(request):
     referer = request.META.get('HTTP_REFERER')
     return render(request, 'error_template.html', {'redirect_url': referer})
