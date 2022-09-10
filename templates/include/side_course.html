@@ -59,11 +59,10 @@
                         <i class="fa fa-file-o" aria-hidden="true"></i></span>{% endif %}
                         {% if slide.is_practice %}<span class="icon-list">
                         <i class="fa fa-desktop" aria-hidden="true"></i></span>{% endif %}
-                        <a href="/course/{{theme.number}}/{% if not forloop.first %}#{{slide.number}}{% endif %}"
+                        <a href="/course/{{theme.number}}/#{{slide.number}}"
                            class="name-theme"> {{ slide.name }} </a>
                         <br>
                     </div>
-
                 </div>
                 {% endfor %}
             {% endif %}
