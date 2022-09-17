@@ -3,6 +3,7 @@ from django.db import models
 from datetime import date
 
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -325,3 +326,58 @@ class UserAnswer(models.Model):
     class Meta:
         verbose_name = "Ответ пользователя"
         verbose_name_plural = "Ответы пользователя"
+
+#
+# class ArticleTag(models.Model):
+#     """Тэг"""
+#     name = models.CharField("Название", max_length=100)
+#     color = models.CharField("Цвет", max_length=7)
+#
+#     def __str__(self):
+#         return f'{self.name}'
+#
+#     class Meta:
+#         verbose_name = "Тэг статьи"
+#         verbose_name_plural = "Тэги статей"
+#
+#
+# class Article(models.Model):
+#     title = models.CharField("Название статьи", max_length=150, null=False)
+#     draft = models.BooleanField("Черновик", default=True)
+#     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, null=True)
+#     tags = models.ManyToManyField(ArticleTag, verbose_name="Теги", null=True)
+#     min_read_time = models.PositiveSmallIntegerField("Время на чтение минимум (в минутах)", default=1)
+#     max_read_time = models.PositiveSmallIntegerField("Время на чтение максимум (в минутах)", default=1)
+#     html_layout = models.TextField("Верстка")
+#     publish_date = models.DateTimeField("Время публикации", default=timezone.now)
+#     create_date = models.DateTimeField("Время создания", default=timezone.now)
+#     poster = models.ImageField("Обложка", upload_to="articles/", null=True)
+#     url = models.SlugField(max_length=130, unique=True, null=True)
+#
+#     def get_absolute_url(self):
+#         return reverse("article_detail", kwargs={"slug": self.url})
+#
+#     def __str__(self):
+#         return f'{self.title}'
+#
+#     class Meta:
+#         verbose_name = "Статья"
+#         verbose_name_plural = "Статьи"
+
+
+class SiteNews(models.Model):
+    title = models.CharField("Заголовок", max_length=150, null=False)
+    draft = models.BooleanField("Черновик", default=True)
+    html_layout = models.TextField("Верстка")
+    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
+    url = models.SlugField(max_length=130, unique=True)
+
+    def get_absolute_url(self):
+        return reverse("sitenews_detail", kwargs={"slug": self.url})
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"

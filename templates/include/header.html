@@ -31,6 +31,9 @@
                         <div><a href="{% url 'not_exist' %}" class="dropdown-item">Материалы <br>для <br>разработки</a></div>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a href="/news" class="nav-link">Новости</a>
+                </li>
                 {% if not user.is_active %}
                 <li class="nav-item">
                     <a href="{% url 'login' %}" class="nav-link">Вход</a>

@@ -198,17 +198,17 @@ def course_main_view(request):
 
 
 def profile_main_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     template, params, user = services.auth_services.change_profile(request)
     request.user = user
     return render(request, template, params)
 
 
 def profile_progress_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     return render(request, 'profile/profile_progress.html')
-
-
-def restore_password_view(request):
-    return render(request, 'restore_password.html')
 
 
 class CourseMainView(ListView):
@@ -230,8 +230,28 @@ class NovelView(ListView):
     queryset = models.Novel.objects.filter(draft=False)
 
 
+# class ArticleView(ListView):
+#     model = models.Article
+#     queryset = models.Article.objects.filter(draft=False)
+#
+#
+# class ArticleDetailView(DetailView):
+#     model = models.Article
+#     slug_field = "url"
+
+
 class NovelDetailView(DetailView):
     model = models.Novel
+    slug_field = "url"
+
+
+class SiteNewsView(ListView):
+    model = models.SiteNews
+    queryset = models.SiteNews.objects.filter(draft=False).order_by("-publish_date")
+
+
+class SiteNewsDetailView(DetailView):
+    model = models.SiteNews
     slug_field = "url"
 
 

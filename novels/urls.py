@@ -1,15 +1,18 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, re_path
+from django.views.generic import TemplateView
+
 from . import views
 from .forms import UserPasswordResetForm, UserSetPasswordForm
 
 urlpatterns = [
     path('catalog/', views.NovelView.as_view()),
+    #path('articles/', views.ArticleView.as_view()),
+    #path('articles/<slug:slug>/', views.ArticleDetailView.as_view(), name="article_detail"),
+    path('news/', views.SiteNewsView.as_view(), name="news"),
+    path('news/<slug:slug>/', views.SiteNewsDetailView.as_view(), name="sitenews_detail"),
     path('', views.index_view, name="index"),
     path('login/', views.user_login, name='login'),
-    path('restore-password/', views.restore_password_view, name='restore'),
-    # path('signin/', views.sign_in, name='sign_in'),
-    # path('register/', views.register, name='register'),
     path('logout/', views.user_logout, name="logout"),
     path('registration/', views.user_registration, name="registration"),
     path('course/', views.course_main_view, name="course_main"),
@@ -20,7 +23,6 @@ urlpatterns = [
     path('course/<slug:slug>/', views.ThemeDetailView.as_view(), name="theme_detail"),
     path('catalog/<slug:slug>/', views.NovelDetailView.as_view(), name="novel_detail"),
     path("review/<int:pk>/", views.AddReview.as_view(), name="add_review"),
-    # path("add-review/", views.add_review),
     path("check/<int:pk>/", views.AnswerChecker.as_view(), name="check_answers"),
     path("clear-answers/<int:pk>/", views.clear_answers, name="clear_answers"),
     path('users/', views.UserList.as_view()),
@@ -52,4 +54,6 @@ urlpatterns = [
             ), name='password_reset_confirm'),
     path(r'password-reset/complete/', auth_views.PasswordResetCompleteView.as_view(),
          {'template_name': "users/registration/password_reset_complete.html"}, name='password_reset_complete'),
+    path("robots.txt",
+         TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 ]
