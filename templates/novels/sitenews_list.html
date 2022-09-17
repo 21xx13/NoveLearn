@@ -1,0 +1,28 @@
+{% extends 'novels/sitenews_base.html' %}
+{% block title %} Новости сайта - NoveLearn {% endblock title %}
+{% block banner_info %}
+{% endblock banner_info %}
+
+{% block news %}
+
+<div class="left-ads-display col-lg-9">
+
+    <div class="row">
+        {% for news in sitenews_list %}
+        <div class="news-wrap">
+            <div class="news-title-wrap">
+                <a href="{{ news.get_absolute_url }}" class="news-title"><h4>{{news.title}}</h4></a>
+            </div>
+            <div class="news-body-wrap">
+                {{news.html_layout | safe}}
+            </div>
+            <div class="news-date-wrap">
+                <p>{{news.publish_date.date}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock news  %}
+
