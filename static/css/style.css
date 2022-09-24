@@ -890,7 +890,12 @@ ol.breadcrumb {
 .card-body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+.card-body-article {
+    display: flex;
+    flex-direction: column;
+    padding: 1em !important;
 }
 
 li.breadcrumb-item {
@@ -1999,9 +2004,86 @@ form.profile-form {
     color: #1e272e;
 }
 
-.news-title-wrap a:hover {
+.news-title-wrap a:hover, .article-title, .article-title:hover {
     color: #1e272e;
 }
+
+h4.card-title {
+    font-size: 20px !important;
+}
+
+.card-article {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 20px;
+    border-radius: 0.25rem;
+}
+
+.article-item {
+    display: flex;
+}
+
+.article-info-wrap {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    font-size: 14px;
+}
+
+.article-date {
+    text-align: right;
+}
+
+.time-to-read {
+    margin-right: 60px;
+}
+
+.tag-wrap {
+    display: flex;
+    margin-bottom: 70px;
+}
+
+.article-tag {
+    margin: 0 3px;
+    padding: 5px 15px;
+    background-color: #1e272e;
+    border-radius: 0.25em;
+}
+
+.article-tag span {
+    text-transform: lowercase;
+    font-size: 15px;
+    color: #6fdefa !important;
+
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
+.article-tag span:hover {
+    text-transform: lowercase;
+    font-size: 15px;
+    color: #fff !important;
+}
+
+.article-tag:hover {
+    cursor: pointer;
+}
+
+.article-icon-time {
+    font-size: 20px;
+    margin-right: 7px;
+}
+
+.time-read {
+    display: flex;
+}
+
+.article-header {
+    display: flex;
+}
+
 
 @media (min-width: 768px) {
     .nav-item {
@@ -2367,6 +2449,10 @@ form.profile-form {
     .ab-info-main.py-md-5.py-4 {
         padding-left: 0 !important;
         padding-right: 0 !important;
+    }
+
+    .article-info-wrap {
+        justify-content: flex-start;
     }
 
 }

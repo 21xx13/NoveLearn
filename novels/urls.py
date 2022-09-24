@@ -7,8 +7,8 @@ from .forms import UserPasswordResetForm, UserSetPasswordForm
 
 urlpatterns = [
     path('catalog/', views.NovelView.as_view()),
-    #path('articles/', views.ArticleView.as_view()),
-    #path('articles/<slug:slug>/', views.ArticleDetailView.as_view(), name="article_detail"),
+    path('articles/', views.ArticleView.as_view()),
+    path('articles/<slug:slug>/', views.ArticleDetailView.as_view(), name="article_detail"),
     path('news/', views.SiteNewsView.as_view(), name="news"),
     path('news/<slug:slug>/', views.SiteNewsDetailView.as_view(), name="sitenews_detail"),
     path('', views.index_view, name="index"),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('course/<slug:slug>/', views.ThemeDetailView.as_view(), name="theme_detail"),
     path('catalog/<slug:slug>/', views.NovelDetailView.as_view(), name="novel_detail"),
     path("review/<int:pk>/", views.AddReview.as_view(), name="add_review"),
+    path("article-review/<int:pk>/", views.AddArticleReview.as_view(), name="add_article_review"),
     path("check/<int:pk>/", views.AnswerChecker.as_view(), name="check_answers"),
     path("clear-answers/<int:pk>/", views.clear_answers, name="clear_answers"),
     path('users/', views.UserList.as_view()),

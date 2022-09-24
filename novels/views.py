@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import services
-from .forms import ReviewForm
+from .forms import ReviewForm, ArticleReviewForm
 from . import models
 
 import re
@@ -230,14 +230,14 @@ class NovelView(ListView):
     queryset = models.Novel.objects.filter(draft=False)
 
 
-# class ArticleView(ListView):
-#     model = models.Article
-#     queryset = models.Article.objects.filter(draft=False)
-#
-#
-# class ArticleDetailView(DetailView):
-#     model = models.Article
-#     slug_field = "url"
+class ArticleView(ListView):
+    model = models.Article
+    queryset = models.Article.objects.filter(draft=False).order_by("-publish_date")
+
+
+class ArticleDetailView(DetailView):
+    model = models.Article
+    slug_field = "url"
 
 
 class NovelDetailView(DetailView):
@@ -268,6 +268,20 @@ class AddReview(View):
             form.novel = novel
             form.save()
         return redirect(novel.get_absolute_url())
+
+
+class AddArticleReview(View):
+    def post(self, request, pk):
+        form = ArticleReviewForm(request.POST)
+        article = models.Article.objects.get(id=pk)
+        if form.is_valid():
+            form = form.save(commit=False)
+            if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
+            form.user = request.user
+            form.article = article
+            form.save()
+        return redirect(article.get_absolute_url())
 
 
 def recount_score(user):

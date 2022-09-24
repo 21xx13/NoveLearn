@@ -327,42 +327,46 @@ class UserAnswer(models.Model):
         verbose_name = "Ответ пользователя"
         verbose_name_plural = "Ответы пользователя"
 
-#
-# class ArticleTag(models.Model):
-#     """Тэг"""
-#     name = models.CharField("Название", max_length=100)
-#     color = models.CharField("Цвет", max_length=7)
-#
-#     def __str__(self):
-#         return f'{self.name}'
-#
-#     class Meta:
-#         verbose_name = "Тэг статьи"
-#         verbose_name_plural = "Тэги статей"
-#
-#
-# class Article(models.Model):
-#     title = models.CharField("Название статьи", max_length=150, null=False)
-#     draft = models.BooleanField("Черновик", default=True)
-#     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, null=True)
-#     tags = models.ManyToManyField(ArticleTag, verbose_name="Теги", null=True)
-#     min_read_time = models.PositiveSmallIntegerField("Время на чтение минимум (в минутах)", default=1)
-#     max_read_time = models.PositiveSmallIntegerField("Время на чтение максимум (в минутах)", default=1)
-#     html_layout = models.TextField("Верстка")
-#     publish_date = models.DateTimeField("Время публикации", default=timezone.now)
-#     create_date = models.DateTimeField("Время создания", default=timezone.now)
-#     poster = models.ImageField("Обложка", upload_to="articles/", null=True)
-#     url = models.SlugField(max_length=130, unique=True, null=True)
-#
-#     def get_absolute_url(self):
-#         return reverse("article_detail", kwargs={"slug": self.url})
-#
-#     def __str__(self):
-#         return f'{self.title}'
-#
-#     class Meta:
-#         verbose_name = "Статья"
-#         verbose_name_plural = "Статьи"
+
+class ArticleTag(models.Model):
+    """Тэг"""
+    name = models.CharField("Название", max_length=100)
+    color = models.CharField("Цвет", max_length=7)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = "Тэг статьи"
+        verbose_name_plural = "Тэги статей"
+
+
+class Article(models.Model):
+    title = models.CharField("Название статьи", max_length=150, null=False)
+    summary = models.CharField("Описание статьи", max_length=500, default="Описание статьи")
+    draft = models.BooleanField("Черновик", default=True)
+    author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, null=True)
+    tags = models.ManyToManyField(ArticleTag, verbose_name="Теги", null=True)
+    min_read_time = models.PositiveSmallIntegerField("Время на чтение минимум (в минутах)", default=1)
+    max_read_time = models.PositiveSmallIntegerField("Время на чтение максимум (в минутах)", default=1)
+    html_layout = models.TextField("Верстка")
+    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
+    create_date = models.DateTimeField("Время создания", default=timezone.now)
+    poster = models.ImageField("Обложка", upload_to="articles/", null=True)
+    url = models.SlugField(max_length=130, unique=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse("article_detail", kwargs={"slug": self.url})
+
+    def get_review(self):
+        return self.articlereviews_set.filter(parent__isnull=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = "Статья"
+        verbose_name_plural = "Статьи"
 
 
 class SiteNews(models.Model):
@@ -381,3 +385,20 @@ class SiteNews(models.Model):
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
+
+
+class ArticleReviews(models.Model):
+    """Отзывы к статье"""
+    user = models.ForeignKey(User, verbose_name="автор", on_delete=models.CASCADE)
+    text = models.TextField("Сообщение", max_length=5000)
+    parent = models.ForeignKey(
+        'self', verbose_name="Родитель", on_delete=models.SET_NULL, blank=True, null=True
+    )
+    article = models.ForeignKey(Article, verbose_name="новелла", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user} - {self.article}"
+
+    class Meta:
+        verbose_name = "Отзыв к статье"
+        verbose_name_plural = "Отзывы к статье"
