@@ -1,0 +1,117 @@
+{% extends 'novels/article_base.html' %}
+{% load static %}
+{% block title %} {{article.title}} {% endblock title %}
+
+{% block container %}
+<div class="container py-md-3">
+    {% endblock container %}
+    {% block sidebar %}
+    <div class="side-bar col-lg-4">
+        {% endblock sidebar %}
+        {% block article %}
+        <div class="left-ads-display col-lg-8">
+            <div class="article-header row">
+                <div class="col-sm-6 col-12  p-0">
+                    <h4 class="mb-3 ">{{article.title}}</h4>
+                </div>
+
+                <div class="article-info-wrap col-sm-6 col-12 p-0">
+                    <div class="mb-1 time-to-read">
+                        <div class="mb-1">Время на чтение:</div>
+                        <div class="time-read"><i class="fa fa-clock-o article-icon-time" aria-hidden="true"></i>
+                            {{article.min_read_time}}-{{article.max_read_time}} минут
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-1">Автор статьи:</div>
+                        <div class="time-read"><i class="fa fa-user-circle-o article-icon-time" aria-hidden="true"></i>{{article.author}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                {{article.html_layout | safe}}
+            </div>
+
+            <div class="mb-3 article-date">
+                <p>Дата публикации: {{article.publish_date.date}}</p>
+            </div>
+            <div class="tag-wrap">
+                {% for tag in article.tags.all %}
+                <div class="article-tag"><span># {{tag.name}}</span></div>
+                {% endfor %}
+            </div>
+            <hr>
+            {% if not user.is_active %}
+            <br>
+            <h5>Для комментирования <a href="{% url 'login' %}">войдите на сайт</a> или
+                <a href="{% url 'registration' %}">зарегистрируйтесь</a></h5>
+            <br>
+            {% endif %}
+            {% if user.is_active %}
+            <div class="row">
+                <div class="single-form-left col-8">
+                    <!-- contact form grid -->
+                    <div class="contact-single">
+                        <h3 class="editContent" style="outline: none; cursor: inherit;">
+                            <span class="sub-tittle editContent">{{ article.articlereviews_set.count }}</span>
+                            Оставить отзыв</h3>
+                        <form action="{% url 'add_article_review' article.id %}" method="post" class="mt-4"
+                              id="formReview">
+                            {% csrf_token %}
+                            <input type="hidden" name="parent" id="contactparent" value="">
+                            <div class="form-group editContent">
+                                <label for="contactcomment" class="editContent">
+                                    Ваш комментарий *
+                                </label>
+                                <textarea class="form-control border" rows="5" name="text"
+                                          id="contactcomment" required=""></textarea>
+                            </div>
+                            <button type="submit"
+                                    class="mt-3 btn btn-success btn-block py-3">
+                                Отправить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% for article_review in article.get_review %}
+            <div class="media py-3 mt-3">
+                <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
+                <div class="media-body mt-4">
+                    <h5 class="mt-0 editContent">
+                        {{ article_review.user }}
+                    </h5>
+                    <p class="mt-2 editContent">
+                        {{ article_review.text }}
+                    </p>
+                    {% if user.is_active %}
+                    <a href="#formReview"
+                       onclick="addReview('{{ article_review.user.username }}', '{{ article_review.id }}')">Ответить</a>
+                    {% endif %}
+                    {% for rew in article_review.articlereviews_set.all %}
+                    <div class="media mt-4 editContent">
+                        <a class="pr-3" href="#">
+                            <img src="{% static 'images/te2.jpg' %}" class="img-fluid "
+                                 alt="image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="mt-0 editContent">{{ rew.user }}</h5>
+                            <p class="mt-2 editContent">{{ rew.text }}</p>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <script>
+            function addReview(name, id) {
+                document.getElementById("contactparent").value = id;
+                document.getElementById("contactcomment").innerText = `${name}, `
+            }
+        </script>
+        {% endblock article %}

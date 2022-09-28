@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
+from pip._vendor import requests
 from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
@@ -255,6 +256,18 @@ class SiteNewsDetailView(DetailView):
     slug_field = "url"
 
 
+def send_message(from_obj, form_page, req):
+    token = "5678874064:AAE7pI5XqY-Pl3PGFS16WSOpXwyjT6uX3vU"
+    url = "https://api.telegram.org/bot"
+    channel_id = "922670301"
+    url += token
+    method = url + "/sendMessage"
+    r = requests.post(method, data={
+        "chat_id": channel_id,
+        "text": f"Новый отзыв на странице https://novelearn.ru{from_obj.get_absolute_url()}\nПользователь: {req.user}\n"
+                f"Отзыв: {form_page.text}"
+    })
+
 class AddReview(View):
     def post(self, request, pk):
         form = ReviewForm(request.POST)
@@ -267,6 +280,7 @@ class AddReview(View):
             form.email = request.user.email
             form.novel = novel
             form.save()
+            send_message(novel, form, request)
         return redirect(novel.get_absolute_url())
 
 
@@ -281,6 +295,7 @@ class AddArticleReview(View):
             form.user = request.user
             form.article = article
             form.save()
+            send_message(article, form, request)
         return redirect(article.get_absolute_url())
 
 
