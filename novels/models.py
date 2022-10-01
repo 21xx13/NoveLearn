@@ -328,6 +328,24 @@ class UserAnswer(models.Model):
         verbose_name_plural = "Ответы пользователя"
 
 
+class SiteNews(models.Model):
+    title = models.CharField("Заголовок", max_length=150, null=False)
+    draft = models.BooleanField("Черновик", default=True)
+    html_layout = models.TextField("Верстка")
+    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
+    url = models.SlugField(max_length=130, unique=True)
+
+    def get_absolute_url(self):
+        return reverse("sitenews_detail", kwargs={"slug": self.url})
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
+
+
 class ArticleTag(models.Model):
     """Тэг"""
     name = models.CharField("Название", max_length=100)
@@ -346,7 +364,7 @@ class Article(models.Model):
     summary = models.CharField("Описание статьи", max_length=500, default="Описание статьи")
     draft = models.BooleanField("Черновик", default=True)
     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, null=True)
-    tags = models.ManyToManyField(ArticleTag, verbose_name="Теги", null=True)
+    tags = models.ManyToManyField(ArticleTag, verbose_name="Теги")
     min_read_time = models.PositiveSmallIntegerField("Время на чтение минимум (в минутах)", default=1)
     max_read_time = models.PositiveSmallIntegerField("Время на чтение максимум (в минутах)", default=1)
     html_layout = models.TextField("Верстка")
@@ -367,26 +385,8 @@ class Article(models.Model):
     class Meta:
         verbose_name = "Статья"
         verbose_name_plural = "Статьи"
-
-
-class SiteNews(models.Model):
-    title = models.CharField("Заголовок", max_length=150, null=False)
-    draft = models.BooleanField("Черновик", default=True)
-    html_layout = models.TextField("Верстка")
-    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
-    url = models.SlugField(max_length=130, unique=True)
-
-    def get_absolute_url(self):
-        return reverse("sitenews_detail", kwargs={"slug": self.url})
-
-    def __str__(self):
-        return f'{self.title}'
-
-    class Meta:
-        verbose_name = "Новость"
-        verbose_name_plural = "Новости"
-
-
+ 
+   
 class ArticleReviews(models.Model):
     """Отзывы к статье"""
     user = models.ForeignKey(User, verbose_name="автор", on_delete=models.CASCADE)
