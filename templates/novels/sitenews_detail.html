@@ -2,14 +2,9 @@
 {% load static %}
 {% block title %} {{sitenews.title}} - NoveLearn {% endblock title %}
 
-{% block container %}
-<div class="container py-md-3">
-    {% endblock container %}
-    {% block sidebar %}
-    <div class="side-bar col-lg-4">
-        {% endblock sidebar %}
+
         {% block news %}
-        <div class="left-ads-display col-lg-8">
+        <div class="left-ads-display col-lg-6 offset-lg-1">
             <div>
                 <h4>{{sitenews.title}}</h4>
                 <br>

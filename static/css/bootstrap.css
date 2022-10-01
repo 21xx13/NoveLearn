@@ -483,8 +483,8 @@ mark,
 }
 
 .img-novel-shots {
-  width: 230px;
   height: auto;
+  padding: 5px !important;
 }
 
 .img-thumbnail {
