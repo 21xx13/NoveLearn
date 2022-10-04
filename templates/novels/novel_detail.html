@@ -1,6 +1,7 @@
 {% extends 'novels/base.html' %}
 {% load static %}
-{% block title %} {{novel.title}} {% endblock title %}
+{% block title %} {{novel.title}} - Описание новеллы {% endblock title %}
+{% block description %}{{novel.description}}{% endblock description %}
 
 {% block novel %}
 <div class="left-ads-display col-lg-6 offset-lg-1">

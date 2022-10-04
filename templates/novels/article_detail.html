@@ -1,6 +1,7 @@
 {% extends 'novels/article_base.html' %}
 {% load static %}
-{% block title %} {{article.title}} {% endblock title %}
+{% block description %}{{article.summary}}{% endblock description %}
+{% block title %} {{article.title}} - NoveLearn {% endblock title %}
 
 
 {% block article %}
