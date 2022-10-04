@@ -1,5 +1,6 @@
 {% extends 'novels/sitenews_base.html' %}
 {% load static %}
+{% block description %}{{sitenews.title}}. Изменение на сайте NoveLearn от {{sitenews.publish_date.date}}.{% endblock description %}
 {% block title %} {{sitenews.title}} - NoveLearn {% endblock title %}
 
 
