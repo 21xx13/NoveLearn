@@ -13,5 +13,5 @@ def get_categories():
 
 @register.inclusion_tag('novels/tags/last_novels.html')
 def get_last_novels(count=5):
-    novels = Novel.objects.order_by("id")[:count]
+    novels = Novel.objects.order_by("-id")[:count]
     return {"last_novels": novels}
