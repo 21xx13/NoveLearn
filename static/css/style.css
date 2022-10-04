@@ -200,6 +200,11 @@ nav ul li {
     width: 110px !important;
 }
 
+.col-md-3.product-men {
+    display: flex;
+    align-items: stretch;
+}
+
 
 .menu li ul li a, .user-hello {
     color: #555;
@@ -704,7 +709,7 @@ ul.tic-info li {
 
 .item-info-product h4 a {
     color: #080808;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
@@ -2532,7 +2537,7 @@ h4.card-title {
     }
 
     .item-info-product h4 a {
-        font-size: 14px !important;
+        font-size: 13px !important;
     }
 
     .product-men {
