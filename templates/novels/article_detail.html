@@ -73,13 +73,18 @@
     </div>
     {% endif %}
     {% for article_review in article.get_review %}
-    <div class="media py-3 mt-3">
+    <div class="media py-3 mt-3 col-lg-8">
         <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
         <div class="media-body">
-            <h5 class="mt-0 editContent">
-                {{ article_review.user }}
-            </h5>
-            <p class="mt-2 editContent">
+            <div class="review-header">
+                <h5 class="mt-0 editContent">
+                    {{ article_review.user }}
+                </h5>
+                <p class="mt-0 mb-0 editContent review-date-wrap">
+                    <span class="review-date">{{ article_review.publish_date | date:"Y-m-d H:i" }}</span>
+                </p>
+            </div>
+            <p class="mt-0 editContent">
                 {{ article_review.text }}
             </p>
             {% if user.is_active %}
@@ -93,8 +98,15 @@
                          alt="image">
                 </a>
                 <div class="media-body">
-                    <h5 class="mt-0 editContent">{{ rew.user }}</h5>
-                    <p class="mt-2 editContent">{{ rew.text }}</p>
+                    <div class="review-header">
+                        <h5 class="mt-0 editContent">
+                            {{ rew.user }}
+                        </h5>
+                        <p class="mt-0 mb-0 editContent review-date-wrap">
+                            <span class="review-date">{{ rew.publish_date | date:"Y-m-d H:i" }}</span>
+                        </p>
+                    </div>
+                    <p class="mt-0 editContent">{{ rew.text }}</p>
                 </div>
 
             </div>
@@ -108,6 +120,19 @@
     function addReview(name, id) {
         document.getElementById("contactparent").value = id;
         document.getElementById("contactcomment").innerText = `${name}, `
+    }
+
+
+    const date = new Date();
+    const offset = date.getTimezoneOffset();
+    const MS_PER_MINUTE = 60000;
+    let dateStr = document.getElementsByClassName('review-date-wrap');
+    for (let dateItem of dateStr) {
+        let d = Date.parse(dateItem.innerText);
+        let myStartDate = new Date(d - offset * MS_PER_MINUTE);
+        let parts  = myStartDate.toLocaleString().split(', ');
+        let timeParts = parts[1].split(':');
+        dateItem.innerText = `${parts[0]} в ${timeParts[0]}:${timeParts[1]}`;
     }
 </script>
 {% endblock article %}

@@ -92,13 +92,19 @@
     </div>
     {% endif %}
     {% for review in novel.get_review %}
-    <div class="media py-5">
+    <div class="media py-5 col-lg-8">
         <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
         <div class="media-body">
-            <h5 class="mt-0 editContent">
-                {{ review.name }}
-            </h5>
-            <p class="mt-2 editContent">
+            <div class="review-header">
+                <h5 class="mt-0 editContent">
+                    {{ review.name }}
+                </h5>
+                <p class="mt-0 mb-0 editContent review-date-wrap">
+                    <span class="review-date">{{ review.publish_date | date:"Y-m-d H:i" }}</span>
+                </p>
+            </div>
+
+            <p class="mt-0 editContent">
                 {{ review.text }}
             </p>{% if user.is_active %}
             <a href="#formReview"
@@ -106,12 +112,18 @@
             {% for rew in review.reviews_set.all %}
             <div class="media mt-5 editContent">
                 <a class="pr-3" href="#">
-                    <img src="{% static 'images/te2.jpg' %}" class="img-fluid "
-                         alt="image">
+                    <img src="{% static 'images/te2.jpg' %}" class="img-fluid " alt="image">
                 </a>
                 <div class="media-body">
-                    <h5 class="mt-0 editContent">{{ rew.name }}</h5>
-                    <p class="mt-2 editContent">{{ rew.text }}</p>
+                    <div class="review-header">
+                        <h5 class="mt-0 editContent">
+                            {{ rew.name }}
+                        </h5>
+                        <p class="mt-0 mb-0 editContent review-date-wrap">
+                            <span class="review-date">{{ review.publish_date | date:"Y-m-d H:i" }}</span>
+                        </p>
+                    </div>
+                    <p class="mt-0 editContent">{{ rew.text }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -125,5 +137,18 @@
         document.getElementById("contactparent").value = id;
         document.getElementById("contactcomment").innerText = `${name}, `
     }
+
+    const date = new Date();
+    const offset = date.getTimezoneOffset();
+    const MS_PER_MINUTE = 60000;
+    let dateStr = document.getElementsByClassName('review-date-wrap');
+    for (let dateItem of dateStr) {
+        let d = Date.parse(dateItem.innerText);
+        let myStartDate = new Date(d - offset * MS_PER_MINUTE);
+        let parts  = myStartDate.toLocaleString().split(', ');
+        let timeParts = parts[1].split(':');
+        dateItem.innerText = `${parts[0]} в ${timeParts[0]}:${timeParts[1]}`;
+    }
+
 </script>
 {% endblock novel %}

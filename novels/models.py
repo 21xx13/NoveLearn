@@ -115,6 +115,7 @@ class Reviews(models.Model):
         'self', verbose_name="Родитель", on_delete=models.SET_NULL, blank=True, null=True
     )
     novel = models.ForeignKey(Novel, verbose_name="новелла", on_delete=models.CASCADE)
+    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
 
     def __str__(self):
         return f"{self.name} - {self.novel}"
@@ -395,6 +396,7 @@ class ArticleReviews(models.Model):
         'self', verbose_name="Родитель", on_delete=models.SET_NULL, blank=True, null=True
     )
     article = models.ForeignKey(Article, verbose_name="новелла", on_delete=models.CASCADE)
+    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
 
     def __str__(self):
         return f"{self.user} - {self.article}"

@@ -1449,6 +1449,10 @@ ul.w3layouts-icons li a {
     border-radius: 50%;
 }
 
+.review-header{
+    display: flex;
+    justify-content: space-between;
+}
 
 .nav-link.avatar {
     width: 45px;
@@ -2382,6 +2386,11 @@ h4.card-title {
 
     .avatar-dropdown {
         display: none;
+    }
+
+    .review-header{
+        flex-direction: column;
+
     }
 
     .profile-error, .profile-error-password {
