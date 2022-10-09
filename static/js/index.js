@@ -166,7 +166,7 @@ window.onload = function () {
         let loc = document.location.pathname;
         let theme_num = +loc.split('/')[2] + 1;
         window.location.hash = '';
-        if (theme_num < 16)
+        if (theme_num < 17)
             document.location.pathname = "course/" + theme_num;
     }
 
