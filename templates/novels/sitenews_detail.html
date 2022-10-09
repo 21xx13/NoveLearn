@@ -4,17 +4,17 @@
 {% block title %} {{sitenews.title}} - NoveLearn {% endblock title %}
 
 
-        {% block news %}
-        <div class="left-ads-display col-lg-6 offset-lg-1">
-            <div>
-                <h4>{{sitenews.title}}</h4>
-                <br>
-                <div>
-                    {{sitenews.html_layout | safe}}
-                </div>
-                <div>
-                    <p>{{sitenews.publish_date.date}}</p>
-                </div>
-            </div>
+{% block news %}
+<div class="left-ads-display col-lg-6 offset-lg-1">
+    <div>
+        <h4>{{sitenews.title}}</h4>
+        <br>
+        <div>
+            {{sitenews.html_layout | safe}}
         </div>
-        {% endblock news %}
+        <div>
+            <p>{{sitenews.publish_date.date}}</p>
+        </div>
+    </div>
+</div>
+{% endblock news %}
