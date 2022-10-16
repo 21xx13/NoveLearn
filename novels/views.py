@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import services
-from .forms import ReviewForm, ArticleReviewForm
+from .forms import ReviewForm, ArticleReviewForm, CommonReviewForm
 from . import models
 
 import re
@@ -104,44 +104,6 @@ class TaskSlideList(generics.ListAPIView):
     serializer_class = serializers.TaskSlideSerializer
 
 
-# @api_view(['POST'])
-# def add_review(request):
-#     print("I'm printing")
-#     body = json.loads(request.body.decode('utf-8'))
-#     print(body)
-#     novel = models.Novel.objects.get(id=body["novel"])
-#     review = models.Reviews(email="mail@mail.com", novel=novel, name="userrrrrr", text=body["text"])
-#     review.save()
-#     return Response({'success': 'ok'})
-#
-#
-# @api_view(['POST'])
-# def sign_in(request):
-#     body = json.loads(request.body.decode('utf-8'))
-#     print(body)
-#     user = authenticate(request, username=body["login"], password=body["password"])
-#     if user is not None:
-#         login(request, user)
-#         return Response({'success': 'ok', 'user': body['login']})
-#     return Response({'success': 'error', 'errorText': f'Пользователь {body["login"]} не найден!'})
-#
-#
-# @api_view(['POST'])
-# def register(request):
-#     body = json.loads(request.body.decode('utf-8'))
-#     print(body)
-#     if len(User.objects.filter(username=body["login"])) > 0:
-#         return Response({'success': 'error', 'errorText': f'Пользователь {body["login"]} уже существует!'})
-#     user = User.objects.create_user(username=body["login"], password=body["password"])
-#     user.save()
-#     user = authenticate(request, username=body["login"], password=body["password"])
-#     login(request, user)
-#     return Response({'success': 'ok', 'user': body['login']})
-
-
-
-
-
 def user_login(request):
     relocate, template, params = services.auth_services.user_login(request)
     if relocate:
@@ -179,9 +141,21 @@ def user_registration(request):
     return render(request, template, params)
 
 
+# def tag_search(request):
+#     if request.method == "GET":
+#         tags = models.ArticleTag.objects.all()
+#         if len(request.GET) == 0:
+#             return render(request, "tag_search.html", {'tags': tags})
+#         else:
+#             checked_tags = []
+#             for key, value in request.GET.items():
+#                 checked_tags.append(tags.filter(id=value)[0])
+#             articles = models.Article.objects.filter(tags__in=checked_tags).distinct().order_by('-publish_date')
+#             return render(request, "tag_search.html", {'tags': tags, 'articles': articles})
+
+
 def index_view(request):
     return render(request, 'index.html')
-
 
 
 def page_not_found_view(request, exception):
@@ -297,6 +271,36 @@ class AddArticleReview(View):
             form.save()
             send_message(article, form, request)
         return redirect(article.get_absolute_url())
+
+
+class AddLectureReview(View):
+    def post(self, request, pk):
+        form = CommonReviewForm(request.POST)
+        slide = models.CourseSlide.objects.get(id=pk)
+        if form.is_valid():
+            form = form.save(commit=False)
+            if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
+            form.user = request.user
+            form.course_slide = slide
+            form.save()
+            send_message(slide, form, request)
+        return redirect(slide.get_absolute_url())
+
+
+class AddTaskReview(View):
+    def post(self, request, pk):
+        form = CommonReviewForm(request.POST)
+        slide = models.TaskSlide.objects.get(id=pk)
+        if form.is_valid():
+            form = form.save(commit=False)
+            if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
+            form.user = request.user
+            form.task_slide = slide
+            form.save()
+            send_message(slide, form, request)
+        return redirect(slide.get_absolute_url())
 
 
 def recount_score(user):

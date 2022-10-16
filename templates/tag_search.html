@@ -1,0 +1,36 @@
+{% extends 'base_empty_crumb.html' %}
+{% block title %} Поиск по статьям {% endblock title %}
+{% block header %} {% endblock header %}
+
+{% block main_block %}
+<div class="left-ads-display col-lg-9">
+    <div class="container course_wrap">
+        <h1 class="mb-3">Поиск по статьям</h1>
+
+        <div class="search-form-wrap">
+            <p>Статья должна содержать следующие теги:</p>
+            <form action="/search" method="get">
+
+                {% for tag in tags %}
+                <div>
+                    <input type="checkbox" id="tag-{{tag.id}}" name="tag-{{tag.id}}" value="{{tag.id}}">
+                    <label for="tag-{{tag.id}}">{{tag.name}}</label>
+                </div>
+                {% endfor %}
+                <div class="w3layouts-newsletter mt-3">
+                    <button type="submit" class="btn btn1 btn-test">Найти</button>
+                </div>
+            </form>
+        </div>
+        <div class="search-result-wrap">
+            {% if articles is not None %}
+                {% for article in articles %}
+                <div>
+                    <h3>{{article.title}}</h3>
+                </div>
+                {% endfor %}
+            {% endif%}
+        </div>
+    </div>
+</div>
+{% endblock main_block  %}

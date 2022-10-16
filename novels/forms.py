@@ -3,7 +3,7 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
-from .models import Reviews, ArticleReviews
+from .models import Reviews, ArticleReviews, CommonReviews
 
 
 class ReviewForm(forms.ModelForm):
@@ -19,6 +19,14 @@ class ArticleReviewForm(forms.ModelForm):
 
     class Meta:
         model = ArticleReviews
+        fields = ("text",)
+
+
+class CommonReviewForm(forms.ModelForm):
+    """Форма отзывов"""
+
+    class Meta:
+        model = CommonReviews
         fields = ("text",)
 
 

@@ -187,6 +187,20 @@ function ValidatePassword(btnId, passId1, passId2, errorId) {
     passw2.oninput = (e) => CheckPassword(passw, passw2, btn, re, errorId);
 }
 
+function getLocalDateTime() {
+    const date = new Date();
+    const offset = date.getTimezoneOffset();
+    const MS_PER_MINUTE = 60000;
+    let dateStr = document.getElementsByClassName('review-date-wrap');
+    for (let dateItem of dateStr) {
+        let d = Date.parse(dateItem.innerText);
+        let myStartDate = new Date(d - offset * MS_PER_MINUTE);
+        let parts  = myStartDate.toLocaleString().split(', ');
+        let timeParts = parts[1].split(':');
+        dateItem.innerText = `${parts[0]} в ${timeParts[0]}:${timeParts[1]}`;
+    }
+}
+
 function CheckPassword(passw, passw2, btn, re, errorId) {
     if (passw.value.search(re) === -1) {
         btn.disabled = true;

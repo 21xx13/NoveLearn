@@ -151,6 +151,12 @@ class CourseSlide(models.Model):
     def __str__(self):
         return self.name
 
+    def get_review(self):
+        return self.commonreviews_set.filter(parent__isnull=True)
+
+    def get_absolute_url(self):
+        return f'/course/{self.theme.number}/#{self.number}'
+
     class Meta:
         verbose_name = "Слайд"
         verbose_name_plural = "Слайды"
@@ -164,6 +170,12 @@ class TaskSlide(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_review(self):
+        return self.commonreviews_set.filter(parent__isnull=True)
+
+    def get_absolute_url(self):
+        return f'/course/{self.theme.number}/#{self.number}'
 
     class Meta:
         verbose_name = "Слайд с тестом"
@@ -404,3 +416,22 @@ class ArticleReviews(models.Model):
     class Meta:
         verbose_name = "Отзыв к статье"
         verbose_name_plural = "Отзывы к статье"
+
+
+class CommonReviews(models.Model):
+    """Отзывы к темам курса"""
+    user = models.ForeignKey(User, verbose_name="автор", on_delete=models.CASCADE)
+    text = models.TextField("Сообщение", max_length=5000)
+    parent = models.ForeignKey(
+        'self', verbose_name="Родитель", on_delete=models.SET_NULL, blank=True, null=True
+    )
+    course_slide = models.ForeignKey(CourseSlide, verbose_name="страница курса", on_delete=models.CASCADE, null=True)
+    task_slide = models.ForeignKey(TaskSlide, verbose_name="страница курса", on_delete=models.CASCADE, null=True)
+    publish_date = models.DateTimeField("Время публикации", default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user} - отзыв к курсу - {self.publish_date}"
+
+    class Meta:
+        verbose_name = "Отзыв к курсу"
+        verbose_name_plural = "Отзывы к курсу"

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Novel, NovelShots, Genre, GameMechanic, Developer, Category, Reviews, CourseTheme, CourseSlide, \
     TaskSlide, TaskQuestion, TaskAnswer, QuestionType, TaskBlock, UserSlides, UserAnswer, UserScore, UserTestSlides, \
-    SiteNews, Article, ArticleTag, ArticleReviews
+    SiteNews, Article, ArticleTag, ArticleReviews, CommonReviews
 
 admin.site.register(Category)
 admin.site.register(Novel)
@@ -28,3 +28,4 @@ admin.site.register(Article)
 admin.site.register(ArticleTag)
 admin.site.register(SiteNews)
 admin.site.register(ArticleReviews)
+admin.site.register(CommonReviews)
