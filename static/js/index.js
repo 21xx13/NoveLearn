@@ -130,6 +130,15 @@ window.onload = function () {
                 }
             }
         }
+        let articleUserId = document.getElementById('user-id').innerText;
+        let articleId = document.getElementById('article-id').value;
+        let rating = await getUserRating(articleUserId, articleId);
+        document.getElementById('article-rating').innerText = await getArticleRating(articleId);
+        let stars = document.querySelectorAll('.rating-star');
+        for(let input of stars){
+            if (+input.value === rating)
+                input.checked = true;
+        }
     }
 
     function change() {
@@ -198,6 +207,30 @@ function getLocalDateTime() {
         let parts  = myStartDate.toLocaleString().split(', ');
         let timeParts = parts[1].split(':');
         dateItem.innerText = `${parts[0]} в ${timeParts[0]}:${timeParts[1]}`;
+    }
+}
+
+async function getUserRating(userID, articleID){
+    if (userID !== 'None' && articleID !== 'None') {
+        let response = await fetch('/ratings/', {
+            method: 'GET'
+        });
+        let answer = await response.json();
+        let result = answer.filter(x => x.article === +articleID && x.user === +userID);
+        if (result.length > 0)
+            return result[0].rating;
+    }
+}
+
+async function getArticleRating(articleID){
+    if (articleID !== 'None') {
+        let response = await fetch('/ratings/', {
+            method: 'GET'
+        });
+        let answer = await response.json();
+        let ratings = answer.filter(x => x.article === +articleID);
+        let res = ratings.map(item => item.rating).reduce((prev, next) => prev + next) / ratings.length;
+        return res.toFixed(1);
     }
 }
 

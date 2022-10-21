@@ -592,10 +592,93 @@ a.btn.active {
 h3.tittle {
     font-size: 2.5em;
     letter-spacing: 2px;
-    color: #292a2b;
+    color: #1e272e;
     text-transform: uppercase;
     margin-bottom: 1em;
 }
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  font-size: 40px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #1e272e;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #6fdefa;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #6fdefa;
+  text-shadow: 0 0 5px #6fdefa;
+}
+
+.form-rating .btn1{
+    font-size: 15px !important;
+    border-radius: 0.25em !important;
+}
+
+.form-rating{
+    margin-bottom: 70px;
+    text-align: center;
+}
+.review-comment .btn1{
+    font-size: 15px !important;
+    border-radius: 0.25em !important;
+    width: 100%;
+}
+
+
 
 .sub-tittle {
     font-size: 0.3em;
@@ -2053,12 +2136,12 @@ h4.card-title {
 }
 
 .time-to-read {
-    margin-right: 60px;
+    margin-right: 40px;
 }
 
 .tag-wrap {
     display: flex;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     flex-wrap: wrap;
 }
 
@@ -2401,6 +2484,10 @@ h4.card-title {
 @media (max-width: 767px) {
     .icon-gd-info {
         text-align: center;
+    }
+
+    .article-info-wrap {
+        justify-content: flex-start;
     }
 
     .product-men {

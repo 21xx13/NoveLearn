@@ -24,6 +24,7 @@ urlpatterns = [
     path('course/<slug:slug>/', views.ThemeDetailView.as_view(), name="theme_detail"),
     path('catalog/<slug:slug>/', views.NovelDetailView.as_view(), name="novel_detail"),
     path("review/<int:pk>/", views.AddReview.as_view(), name="add_review"),
+    path("article-rating/<int:pk>/", views.AddArticleRating.as_view(), name="add_article_rating"),
     path("article-review/<int:pk>/", views.AddArticleReview.as_view(), name="add_article_review"),
     path("lecture-review/<int:pk>/", views.AddLectureReview.as_view(), name="add_lecture_review"),
     path("task-review/<int:pk>/", views.AddTaskReview.as_view(), name="add_task_review"),
@@ -46,6 +47,7 @@ urlpatterns = [
     path('scores/<int:pk>/', views.ScoreDetail.as_view()),
     path('answers/', views.UserAnswerList.as_view()),
     path('answers/<int:pk>/', views.UserAnswerDetail.as_view()),
+    path('ratings/', views.ArticleRatingList.as_view()),
     path('add_slide/', views.add_user_slide, name="add_slide"),
     path('password-reset/', auth_views.PasswordResetView.as_view(
         template_name='registration/password_reset_form.html',

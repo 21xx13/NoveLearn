@@ -5,13 +5,19 @@
 
 
 {% block article %}
+<input type="hidden" id="article-id" value="{{article.id}}">
 <div class="left-ads-display col-lg-6 offset-lg-1">
     <div class="article-header row">
-        <div class="col-sm-6 col-12  p-0">
+        <div class="col-xl-5 col-lg-4 col-md-6 col-sm-12 col-12  p-0">
             <h2 class="mb-3 ">{{article.title}}</h2>
         </div>
 
-        <div class="article-info-wrap col-sm-6 col-12 p-0">
+        <div class="article-info-wrap col-xl-7 col-lg-8 col-md-6 col-sm-12 col-12 p-0">
+            <div>
+                <div class="mb-1 time-to-read">Рейтинг:</div>
+                <div class="time-read"><i class="fa fa-star article-icon-time" aria-hidden="true"></i><span id="article-rating">%4.5%</span>
+                </div>
+            </div>
             <div class="mb-1 time-to-read">
                 <div class="mb-1">Время на чтение:</div>
                 <div class="time-read"><i class="fa fa-clock-o article-icon-time" aria-hidden="true"></i>
@@ -32,11 +38,57 @@
     <div class="mb-3 article-date">
         <p>Дата публикации: {{article.publish_date.date}}</p>
     </div>
+
     <div class="tag-wrap">
         {% for tag in article.tags.all %}
         <div class="article-tag"><span># {{tag.name}}</span></div>
         {% endfor %}
     </div>
+    {% if user.is_active %}
+    <div class="form-rating">
+        <h3 class="editContent" style="outline: none; cursor: inherit;">
+                Оценить статью</h3>
+            <div class="form-wrap-rating">
+                <form class="rating" id="rating-form-star" method="post"
+                      action="{% url 'add_article_rating' article.id %}">
+                    {% csrf_token %}
+                    <label>
+                        <input type="radio" class="rating-star" name="stars" value="1"/>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="2" class="rating-star"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="3" class="rating-star"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="4" class="rating-star"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="5" class="rating-star"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                </form>
+                <div class="w3layouts-newsletter form-rating">
+                    <button type="submit" class="btn1 btn" form="rating-form-star">Отправить</button>
+                </div>
+            </div>
+    </div>
+    {% endif %}
     <hr>
     {% if not user.is_active %}
     <br>
@@ -45,8 +97,9 @@
     <br>
     {% endif %}
     {% if user.is_active %}
+    <br>
     <div class="row">
-        <div class="single-form-left col-8">
+        <div class="single-form-left col-10 offset-1">
             <!-- contact form grid -->
             <div class="contact-single">
                 <h3 class="editContent" style="outline: none; cursor: inherit;">
@@ -63,17 +116,19 @@
                         <textarea class="form-control border" rows="5" name="text"
                                   id="contactcomment" required=""></textarea>
                     </div>
-                    <button type="submit"
-                            class="mt-3 btn btn-success btn-block py-3">
+                    <div class="w3layouts-newsletter review-comment">
+                        <button type="submit"
+                            class="btn1 btn">
                         Отправить
-                    </button>
+                    </button></div>
+
                 </form>
             </div>
         </div>
     </div>
     {% endif %}
     {% for article_review in article.get_review %}
-    <div class="media py-3 mt-3 col-lg-8">
+    <div class="media py-3 mt-3 col-lg-10 offset-1">
         <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
         <div class="media-body">
             <div class="review-header">
@@ -121,8 +176,6 @@
         document.getElementById("contactparent").value = id;
         document.getElementById("contactcomment").innerText = `${name}, `
     }
-
-
     getLocalDateTime();
 </script>
 {% endblock article %}

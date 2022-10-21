@@ -134,3 +134,9 @@ class UserAnswerSerializerDetail(serializers.ModelSerializer):
     class Meta:
         model = models.UserAnswer
         fields = ['id', 'user', 'is_correct', 'answers', 'quest_code', 'is_cleared', 'is_textvalue', 'id_quest']
+
+
+class ArticleRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ArticleRating
+        fields = ['id', 'user', 'article', 'rating']

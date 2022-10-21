@@ -435,3 +435,16 @@ class CommonReviews(models.Model):
     class Meta:
         verbose_name = "Отзыв к курсу"
         verbose_name_plural = "Отзывы к курсу"
+
+
+class ArticleRating(models.Model):
+    user = models.ForeignKey(User, verbose_name="пользователь", on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, verbose_name="Статья", on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField("Оценка", default=0)
+
+    def __str__(self):
+        return f"{self.user} - {self.article} - {self.rating}"
+
+    class Meta:
+        verbose_name = "Оценка статьи"
+        verbose_name_plural = "Оценки статьи"

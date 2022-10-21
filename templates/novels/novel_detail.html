@@ -69,7 +69,7 @@
     {% endif %}
     {% if user.is_active %}
     <div class="row">
-        <div class="single-form-left col-8">
+        <div class="single-form-left col-10 offset-1">
             <!-- contact form grid -->
             <div class="contact-single">
                 <h3 class="editContent" style="outline: none; cursor: inherit;">
@@ -85,10 +85,11 @@
                         <textarea class="form-control border" rows="5" name="text"
                                   id="contactcomment" required=""></textarea>
                     </div>
-                    <button type="submit"
-                            class="mt-3 btn btn-success btn-block py-3">
+                    <div class="w3layouts-newsletter review-comment">
+                        <button type="submit"
+                            class="btn1 btn">
                         Отправить
-                    </button>
+                    </button></div>
                 </form>
             </div>
             <!--  //contact form grid ends here -->
@@ -96,7 +97,7 @@
     </div>
     {% endif %}
     {% for review in novel.get_review %}
-    <div class="media py-5 col-lg-8">
+    <div class="media py-5 col-lg-10 offset-1">
         <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
         <div class="media-body">
             <div class="review-header">

@@ -104,6 +104,11 @@ class TaskSlideList(generics.ListAPIView):
     serializer_class = serializers.TaskSlideSerializer
 
 
+class ArticleRatingList(generics.ListAPIView):
+    queryset = models.ArticleRating.objects.all()
+    serializer_class = serializers.ArticleRatingSerializer
+
+
 def user_login(request):
     relocate, template, params = services.auth_services.user_login(request)
     if relocate:
@@ -270,6 +275,21 @@ class AddArticleReview(View):
             form.article = article
             form.save()
             send_message(article, form, request)
+        return redirect(article.get_absolute_url())
+
+
+class AddArticleRating(View):
+    def post(self, request, pk):
+        article = models.Article.objects.get(id=pk)
+        ratings = models.ArticleRating.objects.filter(article=article).filter(user=request.user)
+        rating = models.ArticleRating()
+        if len(ratings) != 0:
+            rating = ratings[0]
+        print(request.POST['stars'])
+        rating.rating = request.POST['stars']
+        rating.user = request.user
+        rating.article = article
+        rating.save()
         return redirect(article.get_absolute_url())
 
 
