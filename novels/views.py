@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
@@ -12,6 +13,7 @@ from rest_framework.response import Response
 import services
 from .forms import ReviewForm, ArticleReviewForm, CommonReviewForm
 from . import models
+import csv
 
 import re
 
@@ -119,6 +121,50 @@ def user_login(request):
 def user_logout(request):
     template = services.auth_services.user_logout(request)
     return redirect(template)
+
+
+def get_lect_user_stats(request):
+    response = HttpResponse(
+        content_type='text/csv; charset=Windows-1251',
+        headers={'Content-Disposition': 'attachment; filename="Lecture Statistics.csv"'},
+    )
+    writer = csv.writer(response)
+    read_slides = models.UserSlides.objects.all()
+    all_slides = models.CourseSlide.objects.all()
+    writer.writerow(["Пользователь"] + [str(slide) for slide in all_slides])
+    for slide_set in read_slides:
+        res_row = [slide_set.user]
+        user_slides = [slide for slide in slide_set.read_slides.all()]
+        for slide in all_slides:
+            if slide in user_slides:
+                res_row.append("Прочитано")
+            else:
+                res_row.append("Не прочитано")
+        writer.writerow(res_row)
+    return response
+
+
+def get_task_user_stats(request):
+    response = HttpResponse(
+        content_type='text/csv; charset=Windows-1251',
+        headers={'Content-Disposition': 'attachment; filename="Task Statistics.csv"'},
+    )
+    writer = csv.writer(response)
+    all_tasks = models.TaskQuestion.objects.all()
+    all_users = models.User.objects.all()
+    writer.writerow(["Пользователь"] + [task.code for task in all_tasks])
+    for user in all_users:
+        res_row = [user]
+        user_answers = models.UserAnswer.objects.filter(user=user)
+        for task in all_tasks:
+            answer = user_answers.filter(id_quest=task).order_by('-id')
+
+            if len(answer) == 0 or answer[0].is_cleared or not answer[0].is_correct:
+                res_row.append("0")
+            else:
+                res_row.append(str(answer[0].id_quest.weight))
+        writer.writerow(res_row)
+    return response
 
 
 @api_view(['POST'])

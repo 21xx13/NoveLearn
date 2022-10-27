@@ -62,4 +62,6 @@ urlpatterns = [
          {'template_name': "users/registration/password_reset_complete.html"}, name='password_reset_complete'),
     path("robots.txt",
          TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path('lecture_statistics/', views.get_lect_user_stats),
+    path('task_statistics/', views.get_task_user_stats),
 ]
