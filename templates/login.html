@@ -4,7 +4,7 @@
 <div class="wrap-main-block" align="center">
     <h3>Вход</h3>
     <br>
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'login' %}" method="post" id="login-form">
         {% csrf_token %}
         <div class="login-wrap" align="center">
             <div class="form-group">

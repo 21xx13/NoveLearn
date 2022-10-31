@@ -7,7 +7,7 @@
         <h4>Профиль {{user.username}}</h4>
         <div class="profile-forms">
             <div class="field-wrapper">
-                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form">
+                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form" id="new-login-form">
                     {% csrf_token %}
                     <div class="container-fluid">
                         <div class="row">
@@ -27,7 +27,7 @@
                 {% endif %}
             </div>
             <div class="field-wrapper">
-                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form">
+                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form" id="new-email-form">
                     {% csrf_token %}
                     <div class="container-fluid">
                         <div class="row">
@@ -52,7 +52,7 @@
             <h4 class="margin-b-45">Смена пароля</h4>
 
             <form action="{% url 'profile_main' %}" method="post"
-                  class="w3layouts-newsletter profile-form password-form">
+                  class="w3layouts-newsletter profile-form password-form" id="new-password-form">
                 {% csrf_token %}
                 <div class="field-wrapper">
                     <div class="container-fluid">

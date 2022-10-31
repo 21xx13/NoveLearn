@@ -7,30 +7,91 @@
     <div class="content-section">
         <ul id="theme-slides">
             <li class="theme-slide" id="0">
-
                 <p>
-                    Наверное, при первом запуске своей новеллы вы заметили невзрачные и одноцветные фоны главного меню,
-                    меню с настройками и т.д. Если вы еще не разобрались, как это исправить, то сейчас самое время.
-                    Разберемся, как заменить встроенное изображение на своё или же вовсе нарисуем весь внешний вид
-                    новеллы с нуля.
-                </p>
-                <h5>Изменение изображения в главном меню</h5>
-                <p>
-                    Изменение картинки в главном меню делается очень просто: необходимо поместить нужное изображение в
-                    папку с файлами графического интерфейса. Рассмотрим подробнее.
-                </p>
-                <p>
-                    В корневой папке “game” проекта RenPy есть папка gui. В этой папке находятся изображения с названием
-                    “main_menu” и “game_menu” (если вы их не удаляли и не меняли настройки проекта в файле
-                    “options.rpy”). Это и есть изображения главного меню и меню игры в целом.
+                    Основа большинства новелл на языке программирования python - это движок RenPy. У него есть
+                    <a href="https://renpy.org/" target="_blank"><b>официальный
+                        сайт</b></a>, где вы можете его бесплатно скачать и установить себе на компьютер.Там же вы
+                    найдёте документацию и список игр, разработанных на этом движке.
                 </p>
                 <div class="image-lecture-wrap">
-                    <img class="image-lecture" src="/static/images/article_4_1.png" alt="">
+                    <img class="image-lecture" src="/static/images/article_5_1.png" alt="">
                 </div>
                 <p>
-                    Посмотрите разрешение изображений через свойства файла или любым другим удобным способом. Это
-                    разрешение соответствует тому, которое вы выбрали при создании проекта.
+                    Главная часть готова, теперь поговорим о редакторах кода. Код можно писать где угодно, будь то
+                    встроенный блокнот или Word. Главное, чтобы выходной файл был в нужном расширении. Писать, конечно
+                    можно, но удобно ли? Определенно, нет. Существуют специальные редакторы кода, их отличительная
+                    особенность, что они сделаны под написание строк кода и имеют подсветку синтаксиса. То есть, смотря
+                    на код, вы уже будете понимать, что перед вами, функция, класс или переменная. Также они помогают
+                    находить ошибки и быстрее писать код с помощью технологии IntelliSense, которая дописывает за вас
+                    названия функций. Популярные редакторы:
+                    <a href="https://notepad-plus-plus.org/downloads/" target="_blank"><b>Notepad++</b></a>,
+                    <a href="https://atom.io/" target="_blank"><b>Atom</b></a>,
+                    <a href="https://code.visualstudio.com/" target="_blank"><b>Visual Studio Code</b></a>.
                 </p>
+                <div class="image-lecture-wrap">
+                    <img class="image-lecture" src="/static/images/article_5_2.png" alt="">
+                </div>
+                <p>
+                    Как же визуальные новеллы без визуальных редакторов? Инструментов полно:
+                    <a href="https://www.adobe.com/ru/products/photoshop.html" target="_blank"><b>Photoshop</b></a>,
+                    <a href="https://www.gimp.org/" target="_blank"><b>GIMP</b></a>,
+                    <a href="https://www.faststone.org/download.htm" target="_blank"><b>Faststone</b></a>,
+                    <a href="http://paint.net/" target="_blank"><b>Paint.net</b></a>
+                    и так далее. Можно и порисовать, и уже обработать готовые сеты спрайтов и фонов. Сайты с
+                    графическими материалами тоже есть:
+<a href="https://unsplash.com/" target="_blank"><b>Unsplash</b></a> (арт и фотографии),
+                    <a href="https://fonts.google.com/" target="_blank"><b>Google Fonts</b></a> (шрифты),
+                    <a href="https://www.flaticon.com/" target="_blank"><b>Flaticon</b></a> (иконки).
+                </p>
+                <div class="image-lecture-wrap">
+                    <img class="image-lecture" src="/static/images/article_5_3.jpg" alt="">
+                </div>
+                <p>
+                    Для звуков можно воспользоваться редактором
+                    <a href="https://www.audacityteam.org/download/" target="_blank"><b>Audacity</b></a> или онлайн
+                    сервисами:
+                    <a href="https://mp3cut.net/ru/" target="_blank"><b>mp3cut.net</b></a>,
+                    <a href="https://convertio.co/ru/mp3-converter/" target="_blank"><b>Convertio.co</b></a>,
+                    <a href="https://clideo.com/ru/cut-audio" target="_blank"><b>Clideo</b></a>.
+                    А если нужны звуки для игры, но нет навыков для написания собственных, то можно найти их на
+                    сайтах:
+                    <a href="https://freesound.org/" target="_blank"><b>Freesound.org</b></a>,
+                    <a href="https://99sounds.org/" target="_blank"><b>99sounds.org</b></a>,
+                    <a href="https://www.freesfx.co.uk/" target="_blank"><b>Freesfx</b></a>,
+                    <a href="https://soundscrate.com/" target="_blank"><b>SoundsCrate</b></a>
+                    и им подобных.
+                </p>
+                <div class="image-lecture-wrap">
+                    <img class="image-lecture" src="/static/images/article_5_4.jpeg" alt="">
+                </div>
+                <p>
+                    Когда дело доходит до написания сценариев к игре, то очень тяжело всё удержать в голове. Особенно,
+                    если сюжет с множеством концовок. Есть такие сервисы с редактором схем, их ещё называют MindMap`ы. В
+                    них можно переложить всё из своей головы и увидеть полную картину мира, а если нужно, то и
+                    отредактировать её. Из распространённых:
+                    <a href="https://blumind.ru.uptodown.com/windows" target="_blank"><b>Blumind</b></a>,
+                    <a href="https://coggle.it/?lang=ru" target="_blank"><b>Google Coggle</b></a>,
+                    <a href="https://www.mindmeister.com/ru" target="_blank"><b>MindMeister</b></a>.
+                </p>
+                <div class="image-lecture-wrap">
+                    <img class="image-lecture" src="/static/images/article_5_5.jpg" alt="">
+                </div>
+                <p>
+                Иногда бывает момент, что вы скачали файл или какой-то ресурс с сайта и использовали его в своей игре.
+                Позже, вам приходит уведомление, что вы использовали лицензированный ресурс, без права на данное
+                действие. Согласитесь, не очень приятно. Поэтому ниже будет список аббревиатур лицензий и описания к ним.
+                    Подробнее <a href="https://creativecommons.org/licenses/" target="_blank"><b>по ссылке</a></b></p>
+                <p><b>Виды лицензий:</b></p>
+                <p>
+                    СС0 - Нет ограничений<br>
+                    СС BY - Укажите автора<br>
+                    CC BY-SA - Ваша работа под этой же лицензией (свободно распространяется)<br>
+                    CC BY-ND - Нельзя изменять<br>
+                    CC BY-NC - Нельзя продавать<br>
+                    CC BY-NC-SA - Нельзя продавать, распространение работы под той же лицензией, что и используемые ресурсы<br>
+                    CC BY-NC-ND - Нельзя продавать, нельзя изменять ресурс<br>
+                    GPL - Нет ограничений, но работа тоже под этой же лицензией<br>
+                    </p>
                 <div class="image-lecture-wrap">
                     <img class="image-lecture" src="/static/images/article_4_2.png" alt="">
                 </div>
@@ -112,10 +173,10 @@
                 </div>
                 <br>
 
-                    <p>
-                        Воспользуемся объектом imagemap, у которого можно указать фоновое изображение (ground),
-                        изображения с кнопками (idle и hover).
-                    </p>
+                <p>
+                    Воспользуемся объектом imagemap, у которого можно указать фоновое изображение (ground),
+                    изображения с кнопками (idle и hover).
+                </p>
                 <div class="code-wrap">
                     <pre><code class="language-python">screen main_menu():
     tag menu
@@ -189,9 +250,12 @@
                     и разобраться во всех экранах.
                 </p>
                 <p>
-                    С дальнейшей кастомизацией помогут <a href="https://www.renpy.org/doc/html/gui.html" target="_blank"><b>официальный гайд</b></a> и многочисленные видео на YouTube.
+                    С дальнейшей кастомизацией помогут <a href="https://www.renpy.org/doc/html/gui.html"
+                                                          target="_blank"><b>официальный гайд</b></a> и многочисленные
+                    видео на YouTube.
                 </p>
-                <p><a href="/static/Главное%20меню.zip" download><b>Скачать изображения из примера со своим меню</b></a></p>
+                <p><a href="/static/Главное%20меню.zip" download><b>Скачать изображения из примера со своим меню</b></a>
+                </p>
                 <h6>Ход работы:</h6>
                 <ul>
                     <li class="lect_li"><p>создание эскизов (если рисуете на бумаге, потом просто вставьте в программу
