@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
 from pip._vendor import requests
 from rest_framework import generics
 from django.contrib.auth.models import User
@@ -142,6 +142,12 @@ def get_lect_user_stats(request):
                 res_row.append("Не прочитано")
         writer.writerow(res_row)
     return response
+
+
+class ServiceWorkerView(TemplateView):
+    template_name = 'sw.js'
+    content_type = 'application/javascript'
+    name = 'sw.js'
 
 
 def get_task_user_stats(request):

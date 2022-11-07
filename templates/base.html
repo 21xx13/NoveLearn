@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{% static 'highlight/styles/base16/unikitty-light.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
     <link rel="icon" href="{% static 'images/icon.png' %}">
+    <link rel="manifest" href="{% static 'manifest.webmanifest' %}" />
     <script src="{% static 'highlight/highlight.min.js' %}"></script>
 
     <script>
@@ -62,7 +63,17 @@
     {% endblock content %}
     {% include 'include/footer.html' %}
 </div>
-
+<script>
+       if ('serviceWorker' in navigator) {
+           navigator.serviceWorker.register('{% url "sw.js" %}', { scope: '/' }).then(function(reg) {
+               // registration worked
+               console.log('Registration succeeded. Scope is ' + reg.scope);
+           }).catch(function(error) {
+               // registration failed
+               console.log('Registration failed with ' + error);
+           });
+       }
+   </script>
 </body>
 
 </html>

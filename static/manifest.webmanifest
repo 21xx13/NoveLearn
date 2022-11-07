@@ -1,0 +1,19 @@
+{
+  "background_color": "white",
+  "description": "Сборник материалов по разработке визуальных новелл.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "./images/mobile-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "./images/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "NoveLearn",
+  "short_name": "NoveLearn",
+  "start_url": "/"
+}
