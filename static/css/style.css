@@ -1594,6 +1594,10 @@ ul.w3layouts-icons li a {
     width: 40%;
 }
 
+.image-lecture-wrap .image-lecture-xsm {
+    width: 20%;
+}
+
 .image-lecture-wrap span {
     font-style: italic;
     display: block;
