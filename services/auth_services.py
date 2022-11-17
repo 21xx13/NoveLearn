@@ -1,12 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from novels.models import UserSlides, UserScore, UserTestSlides
+from novels.models import UserSlides, UserScore, UserTestSlides, UserSubscription
 
 
 def user_login(request):
     if request.method == "POST":
-        print(type(request.POST.get("remember")))
         user = authenticate(request, username=request.POST["login"], password=request.POST["password"])
         if user is not None:
             if request.POST.get("remember") is None:
@@ -39,13 +38,16 @@ def user_registration(request):
             slides_array = UserSlides()
             slides_array.user = user
             slides_array.save()
+            subscription = UserSubscription()
+            subscription.user = user
+            subscription.is_subscribed = request.POST.get("subscribe") is not None
+            subscription.save()
             user_score = UserScore()
             user_score.user = user
             user_score.save()
             test_slides = UserTestSlides()
             test_slides.user = user
             test_slides.save()
-
             user = authenticate(request, username=username, password=password)
             login(request, user)
             return True, 'index', {}

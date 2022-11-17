@@ -448,3 +448,15 @@ class ArticleRating(models.Model):
     class Meta:
         verbose_name = "Оценка статьи"
         verbose_name_plural = "Оценки статьи"
+
+
+class UserSubscription(models.Model):
+    user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.CASCADE, related_name="user_subscription")
+    is_subscribed = models.BooleanField("Подписан", default=False)
+
+    class Meta:
+        verbose_name = "Подписанный пользователь"
+        verbose_name_plural = "Подписанные пользователи"
+
+    def __str__(self):
+        return f"{self.user} - {self.is_subscribed}"
