@@ -31,6 +31,7 @@
         </div>
     </div>
 </div>
+{% if not user.is_active %}
 <hr>
 <div class="container-fluid padding main-page-block">
     <div class="row padding">
@@ -51,6 +52,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 <figure>
     <div class="fixed-wrap">
         <div id="fixed-main-page"></div>

@@ -26,6 +26,7 @@
     </ul>
 </div>
 <br>
+{% if not user.is_active %}
 <div class="left-side my-4">
     <h3 class="sear-head editContent">Стань частью сообщества</h3>
     <div style="width: 85%">
@@ -37,6 +38,7 @@
     </div>
 </div>
 <br>
+{% endif %}
 <!--preference -->
 <!--    <div class="left-side my-4">-->
 <!--        <h3 class="sear-head editContent" >Жанры</h3>-->
