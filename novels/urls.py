@@ -13,6 +13,8 @@ urlpatterns = [
     path('news/<slug:slug>/', views.SiteNewsDetailView.as_view(), name="sitenews_detail"),
     path('', views.index_view, name="index"),
     # path('search/', views.tag_search, name="search"),
+    path('p5dVITB6AQ/', views.send_email_subscribe, name="subscribe"),
+    path('subscribe_all/', views.subscribe_all),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name="logout"),
     path('registration/', views.user_registration, name="registration"),

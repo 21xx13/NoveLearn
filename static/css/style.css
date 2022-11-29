@@ -1174,8 +1174,8 @@ form.w3layouts-newsletter {
     margin-bottom: 2.5em;
 }
 
-.bottom-w3layouts-sec-nav {
-    border-top: 1px solid #ddd;
+.no-padding-top{
+    padding-top: 0 !important;
 }
 
 .w3layouts-newsletter input[type="email"] {
@@ -1584,6 +1584,15 @@ ul.w3layouts-icons li a {
     width: 100%;
     text-align: center;
     margin: 15px 0;
+}
+
+.subscribe-label{
+    margin-left: 15px;
+}
+
+#subscribe-profile{
+    width: 20px;
+    height: 20px;
 }
 
 .image-lecture-wrap img {

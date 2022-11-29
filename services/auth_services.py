@@ -112,6 +112,23 @@ def change_email(request):
         return 'profile/profile_info.html', {'invalid_email': "E-mail не может быть пустым"}, request.user
 
 
+def change_subsription(request):
+    message = 'E-mail рассылка включена'
+    subscription = request.POST.get('subscribe-profile', None)
+    user = User.objects.filter(username=request.user.username)[0]
+    if len(UserSubscription.objects.filter(user=user)) > 0:
+        subscription_obj = UserSubscription.objects.filter(user=user)[0]
+    else:
+        subscription_obj = UserSubscription()
+        subscription_obj.user = user
+    subscription_obj.is_subscribed = subscription is not None
+    subscription_obj.save()
+    if subscription is None:
+        message = 'E-mail рассылка отключена'
+    return 'profile/profile_info.html', {'subscribe_message': message,
+                                         'subscribe_value': subscription_obj.is_subscribed}, user
+
+
 def change_profile(request):
     if request.method == "POST":
         if request.POST.get('login', None) is not None:
@@ -121,6 +138,9 @@ def change_profile(request):
         elif request.POST.get('old-password', None) is not None and request.POST.get('new-password', None) \
                 and request.POST.get('new-password-2', None):
             return change_password(request)
+        elif request.POST.get('subscribe-flag', None) == 'true':
+            print(request.POST.get('subscribe-profile'))
+            return change_subsription(request)
         else:
             return 'profile/profile_info.html', {'invalid_old_password': None}, request.user
     else:

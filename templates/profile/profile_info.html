@@ -7,11 +7,13 @@
         <h4>Профиль {{user.username}}</h4>
         <div class="profile-forms">
             <div class="field-wrapper">
-                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form" id="new-login-form">
+                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form"
+                      id="new-login-form">
                     {% csrf_token %}
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="label-profile col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="login">Логин</label></div>
+                            <div class="label-profile col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="login">Логин</label>
+                            </div>
                             <div class="col-xl-7 col-lg-5 col-md-4 col-sm-8 col-7">
                                 <input type="text" name="login" id="login" placeholder="Введите новый логин" required=""
                                        value="{%if input_val is not None%}{{input_val}}{% else %}{{ user.username }}{%endif%}">
@@ -27,11 +29,13 @@
                 {% endif %}
             </div>
             <div class="field-wrapper">
-                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form" id="new-email-form">
+                <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form"
+                      id="new-email-form">
                     {% csrf_token %}
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="label-profile col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="email">E-mail</label></div>
+                            <div class="label-profile col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="email">E-mail</label>
+                            </div>
                             <div class="col-xl-7 col-lg-5 col-md-4 col-sm-8 col-7">
                                 <input type="email" name="email" placeholder="Введите новый email" id="email"
                                        required=""
@@ -57,10 +61,12 @@
                 <div class="field-wrapper">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="old-password">Старый</label></div>
-                            <div class="col-xl-10 col-md-9 col-sm-12"><input type="password" name="old-password" id="old-password"
-                                                       placeholder="Введите старый пароль"
-                                                       required=""></div>
+                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label
+                                    for="old-password">Старый</label></div>
+                            <div class="col-xl-10 col-md-9 col-sm-12"><input type="password" name="old-password"
+                                                                             id="old-password"
+                                                                             placeholder="Введите старый пароль"
+                                                                             required=""></div>
                             {% if invalid_old_password is not None %}
                             <div class="profile-error-password">{{ invalid_old_password }}</div>
                             {% endif %}
@@ -70,7 +76,8 @@
                 <div class="field-wrapper">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="password">Новый</label></div>
+                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label
+                                    for="password">Новый</label></div>
                             <div class="col-xl-10 col-md-9 col-sm-12">
                                 <input type="password" name="new-password" id="password"
                                        placeholder="Введите новый пароль"
@@ -83,7 +90,8 @@
                 <div class="field-wrapper">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label for="password2">Новый</label></div>
+                            <div class="label-profile-password col-xl-2 col-md-3 d-md-flex d-sm-none d-none"><label
+                                    for="password2">Новый</label></div>
                             <div class="col-xl-10 col-md-9 col-sm-12">
                                 <input type="password" name="new-password-2" id="password2"
                                        placeholder="Введите новый пароль ещё раз"
@@ -96,6 +104,32 @@
                 </div>
                 <div align="right">
                     <button class="btn1 btn profile-changer" id="pass-change-btn">Сохранить</button>
+                </div>
+            </form>
+            <hr>
+            <h4 class="margin-b-45">Управление рассылкой</h4>
+            <form action="{% url 'profile_main' %}" method="post" class="w3layouts-newsletter profile-form"
+                  id="subscribe-form">
+                {% csrf_token %}
+                <div class="container-fluid">
+                    <div class="row" style="flex-wrap: nowrap">
+                        <input hidden value="true" name="subscribe-flag">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="subscribe-profile"
+                                   name="subscribe-profile" {% if subscribe_value %}checked{% endif %}>
+                            <label class="form-check-label subscribe-label" for="subscribe-profile">
+                                Я хочу получать письма при публикации нового контента и узнавать об изменениях в работе
+                                сайта</label>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-4 col-5">
+                            <button class="btn1 btn profile-changer">Сохранить</button>
+                        </div>
+
+                    </div>
+                    {% if subscribe_message is not None %}
+                    <br>
+                    <div><i class="fa fa-check mr-1" aria-hidden="true"></i> {{ subscribe_message }}</div>
+                    {% endif %}
                 </div>
             </form>
         </div>

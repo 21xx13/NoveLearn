@@ -1,0 +1,31 @@
+{% extends 'base_empty_crumb.html' %}
+{% block title %} Отправка писем {% endblock title %}
+{% block header %} {% endblock header %}
+
+{% block main_block %}
+<div class="left-ads-display col-lg-9">
+    <div class="container course_wrap">
+        <h1 class="mb-3">Поиск по статьям</h1>
+
+        <div class="search-form-wrap">
+            <p>Введите имя новости (slug-field):</p>
+            <form action="/p5dVITB6AQ/" method="post">
+                {% csrf_token %}
+                <div>
+                    <label>
+                        <input type="text" name="slug-field" required />
+                    </label>
+                </div>
+                <div class="w3layouts-newsletter mt-3">
+                    <button type="submit" class="btn btn1 btn-test">Найти</button>
+                </div>
+            </form>
+        </div>
+        <div class="search-result-wrap">
+            {% if message is not None %}
+            <h3>{{message}}</h3>
+            {% endif%}
+        </div>
+    </div>
+</div>
+{% endblock main_block  %}

@@ -1,5 +1,6 @@
 import json
 
+from django.conf.global_settings import DEFAULT_FROM_EMAIL
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -14,6 +15,7 @@ import services
 from .forms import ReviewForm, ArticleReviewForm, CommonReviewForm
 from . import models
 import csv
+from django.core.mail import send_mail
 
 import re
 
@@ -196,6 +198,52 @@ def user_registration(request):
     if relocate:
         return redirect(template)
     return render(request, template, params)
+
+
+def subscribe_all(request):
+    users = User.objects.all()
+    for user in users:
+        if len(models.UserSubscription.objects.filter(user=user)) > 0:
+            subscription_obj = models.UserSubscription.objects.filter(user=user)[0]
+        else:
+            subscription_obj = models.UserSubscription()
+            subscription_obj.user = user
+        subscription_obj.is_subscribed = True
+        subscription_obj.save()
+    html = "<html><body>Подписки включены всем.</body></html>"
+    return HttpResponse(html)
+
+
+def send_email_subscribe(request):
+    if request.method == "POST":
+        news_name = request.POST.get('slug-field', None)
+        print(news_name)
+        news = models.SiteNews.objects.filter(url=news_name)
+        if len(news) == 0:
+            message = f'Новость по адресу "{news_name}" не найдена'
+        else:
+            news_obj = news[0]
+            mail_body = f'<h4>{news_obj.title}</h4><div>{news_obj.html_layout}</div>'
+            users = models.UserSubscription.objects.filter(is_subscribed=True)
+            emails = [x.user.email for x in users]
+            for email in emails:
+                send_mail(
+                    news_obj.title,
+                    mail_body,
+                    DEFAULT_FROM_EMAIL,
+                    [email],
+                    html_message=mail_body,
+                    fail_silently=True,
+                )
+            message = "Письма отправлены"
+
+        return render(request, "subscribe.html", {'message': message})
+    else:
+        if request.user.is_active and request.user.username == "admin":
+            return render(request, "subscribe.html")
+        else:
+            return  redirect('index')
+
 
 
 # def tag_search(request):
