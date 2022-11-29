@@ -144,4 +144,8 @@ def change_profile(request):
         else:
             return 'profile/profile_info.html', {'invalid_old_password': None}, request.user
     else:
-        return 'profile/profile_info.html', {'invalid_login': None}, request.user
+        if len(UserSubscription.objects.filter(user=request.user)) > 0:
+            subscription_obj = UserSubscription.objects.filter(user=request.user)[0].is_subscribed
+        else:
+            subscription_obj = False
+        return 'profile/profile_info.html', {'invalid_login': None, 'subscribe_value': subscription_obj}, request.user
