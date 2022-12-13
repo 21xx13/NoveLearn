@@ -1,6 +1,9 @@
 {% extends 'course/course_base.html' %}
 {% load static %}
 {% block title %} {{ coursetheme.name }} - Курс по разработке новелл {% endblock title %}
+{% block canonical %}
+    <link rel="canonical" href="https://novelearn.ru/course/{{coursetheme.number}}/"/>
+{% endblock canonical %}
 
 {% block theme %}
 <div class="left-ads-display col-lg-8 col-11">

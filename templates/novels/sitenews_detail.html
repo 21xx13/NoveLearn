@@ -2,6 +2,7 @@
 {% load static %}
 {% block description %}{{sitenews.title}}. Изменение на сайте NoveLearn от {{sitenews.publish_date.date}}.{% endblock description %}
 {% block title %} {{sitenews.title}} - NoveLearn {% endblock title %}
+{% block canonical %}<link rel="canonical" href="https://novelearn.ru/news/{{sitenews.url}}/"/>{% endblock canonical %}
 
 
 {% block news %}

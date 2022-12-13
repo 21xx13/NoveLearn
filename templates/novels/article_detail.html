@@ -2,6 +2,9 @@
 {% load static %}
 {% block description %}{{article.summary}}{% endblock description %}
 {% block title %} {{article.title}} - NoveLearn {% endblock title %}
+{% block canonical %}
+    <link rel="canonical" href="https://novelearn.ru/articles/{{article.url}}/"/>
+{% endblock canonical %}
 
 
 {% block article %}

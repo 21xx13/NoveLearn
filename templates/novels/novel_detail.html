@@ -1,6 +1,7 @@
 {% extends 'novels/base.html' %}
 {% load static %}
 {% block title %} {{novel.title}} - Описание новеллы {% endblock title %}
+{% block canonical %}<link rel="canonical" href="https://novelearn.ru/catalog/{{novel.url}}/"/>{% endblock canonical %}
 {% block description %}{{novel.description}}{% endblock description %}
 
 {% block novel %}
